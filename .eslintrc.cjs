@@ -26,6 +26,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:jsx-a11y/recommended',
     'prettier',
+    'next/core-web-vitals',
   ],
   rules: {
     'tailwindcss/classnames-order': 'off',
