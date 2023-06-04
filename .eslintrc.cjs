@@ -16,6 +16,12 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      alias: {
+        map: [['@', '.']],
+        extensions: ['.js', '.jsx'],
+      },
+    },
   },
   plugins: ['prettier'],
   extends: [
