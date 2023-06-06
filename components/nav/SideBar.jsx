@@ -10,9 +10,10 @@ import Navbar from './Navbar'
 export const SideBar = () => {
   useEffect(() => {
     initAccordions()
-  })
+  }, [])
+
   return (
-    <div className="h-full">
+    <>
       <Navbar />
       <aside
         id="logo-sidebar"
@@ -46,12 +47,6 @@ export const SideBar = () => {
           </ul>
         </div>
       </aside>
-
-      <div className="p-2 sm:ml-64">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-          Content
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
