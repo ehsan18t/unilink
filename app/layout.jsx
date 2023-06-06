@@ -1,5 +1,5 @@
 import { SideBar } from '@/components/nav/SideBar'
-import './globals.css'
+import '@/styles/globals.css'
 
 export const metadata = {
   title: 'Home Page',
