@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <SideBar />
+        
         {/* Content */}
         <div className="p-4 sm:ml-64 mt-14">{children}</div>
       </body>
