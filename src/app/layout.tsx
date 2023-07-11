@@ -1,19 +1,18 @@
 import { SideBar } from '@/components/nav/SideBar'
 import '@/styles/globals.css'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Home Page',
   description: 'This is the home page',
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }:any) {
   return (
     <html lang="en">
-      <body>
-        
-        {/* Content */}
-        <div className="p-4 sm:ml-64 mt-14">{children}</div>
-      </body>
+      <body className="">{children}</body>
     </html>
   )
 }
