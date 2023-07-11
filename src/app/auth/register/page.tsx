@@ -3,8 +3,8 @@ import { RegisterForm } from '@/components/forms';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Full Auth | Register',
-	description: 'Full Auth register page',
+	title: 'UniLink | Register',
+	description: 'UniLink register page',
 };
 
 export default function Page() {
