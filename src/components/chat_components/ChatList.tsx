@@ -29,7 +29,7 @@ export default function ChatList() {
                     </button>
                 </div>
 
-                
+                {viewMode === 'group' || viewMode === '' ? <GroupList groups={'group'} /> : <PeopleList people={'people'} />}
             </div>
             
         </div >
