@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRegister } from '@/hooks';
 import { Input, Select } from '@/components/forms';
 import { Spinner } from '@/components/common';
+import server from '@/api/server';
 
 interface University {
 	id: number;
@@ -23,25 +24,33 @@ export default function RegisterForm() {
 		onChange,
 		onSubmit,
 	} = useRegister();
-
-	
+	// Initialize the options state with an empty array
 	const [options, setOptions] = useState([]);
 
-	fetch('http://localhost:8000/api/university/list/', {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	})
+	// Function to fetch data and update options
+	const fetchData = () => {
+		fetch(server.url + '/api/university/list/', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
 		.then((response) => response.json())
 		.then((data) => {
 			setOptions(data.map((item: University) => {
 				return {
 					value: item.id,
 					label: item.name,
-				}
+				};
 			}));
 		});
+	};
+
+	// Fetch data only on component mount
+	useEffect(() => {
+		fetchData();
+	}, []);
+
 
 	return (
 		<form className='space-y-6' onSubmit={onSubmit}>
