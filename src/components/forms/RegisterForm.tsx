@@ -1,8 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { useRegister } from '@/hooks';
 import { Input, Select } from '@/components/forms';
 import { Spinner } from '@/components/common';
+
+interface University {
+	id: number;
+	name: string;
+}
 
 export default function RegisterForm() {
 	const {
@@ -18,11 +24,24 @@ export default function RegisterForm() {
 		onSubmit,
 	} = useRegister();
 
-	const options = [
-			{ value: '1', label: 'Option 1' },
-			{ value: '2', label: 'Option 2' },
-			{ value: '3', label: 'Option 3' },
-	]
+	
+	const [options, setOptions] = useState([]);
+
+	fetch('http://localhost:8000/api/university/list/', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			setOptions(data.map((item: University) => {
+				return {
+					value: item.id,
+					label: item.name,
+				}
+			}));
+		});
 
 	return (
 		<form className='space-y-6' onSubmit={onSubmit}>
