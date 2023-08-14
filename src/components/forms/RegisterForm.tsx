@@ -24,7 +24,11 @@ export default function RegisterForm() {
 		onSubmit,
 	} = useRegister();
 	// Initialize the options state with an empty array
-	const [options, setOptions] = useState([]);
+	const [options, setOptions] = useState([{
+		value: 0,
+		label: 'Select a university',
+		isEnabled: false,
+	}]);
 
 	// Function to fetch data and update options
 	const fetchData = () => {
@@ -35,13 +39,22 @@ export default function RegisterForm() {
 			},
 		})
 		.then((response) => response.json())
-		.then((data) => {
-			setOptions(data.map((item: University) => {
-				return {
-					value: item.id,
-					label: item.name,
-				};
-			}));
+			.then((data) => {
+				const updatedOptions = [
+					{
+						value: 0,
+						label: 'Select a university',
+						isEnabled: true,
+					},
+					...data.map((item: University) => {
+						return {
+							value: item.id,
+							label: item.name,
+							isEnabled: true,
+						};
+					}),
+				];
+				setOptions(updatedOptions);
 		});
 	};
 

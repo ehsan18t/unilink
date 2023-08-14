@@ -4,6 +4,7 @@ interface User {
 	first_name: string;
 	last_name: string;
 	username: string;
+	university: number;
 	email: string;
 }
 
@@ -50,13 +51,14 @@ const authApiSlice = apiSlice.injectEndpoints({
 				first_name,
 				last_name,
 				username,
+				university,
 				email,
 				password,
 				re_password,
 			}) => ({
 				url: '/users/',
 				method: 'POST',
-				body: { first_name, last_name, username, email, password, re_password },
+				body: { first_name, last_name, username, university, email, password, re_password },
 			}),
 		}),
 		verify: builder.mutation({
