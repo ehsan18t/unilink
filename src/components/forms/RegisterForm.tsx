@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRegister } from '@/hooks';
 import { Input, Select } from '@/components/forms';
 import { Spinner } from '@/components/common';
-import server from '@/api/server';
 
 interface University {
 	id: number;
@@ -29,7 +28,7 @@ export default function RegisterForm() {
 
 	// Function to fetch data and update options
 	const fetchData = () => {
-		fetch(server.url + '/api/university/list/', {
+		fetch(process.env.NEXT_PUBLIC_HOST + '/api/university/list/', {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
