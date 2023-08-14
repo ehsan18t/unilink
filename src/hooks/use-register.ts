@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useRegisterMutation } from '@/redux/features/authApiSlice';
 import { toast } from 'react-toastify';
@@ -11,14 +11,15 @@ export default function useRegister() {
 		first_name: '',
 		last_name: '',
 		username: '',
+		university: '',
 		email: '',
 		password: '',
 		re_password: '',
 	});
 
-	const { first_name, last_name, username, email, password, re_password } = formData;
+	const { first_name, last_name, username, university, email, password, re_password } = formData;
 
-	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+	const onChange = (event: any) => {
 		const { name, value } = event.target;
 
 		setFormData({ ...formData, [name]: value });
@@ -27,7 +28,7 @@ export default function useRegister() {
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		register({ first_name, last_name, username, email, password, re_password })
+		register({ first_name, last_name, username, university, email, password, re_password })
 			.unwrap()
 			.then(() => {
 				toast.success('Please check email to verify account');
@@ -42,6 +43,7 @@ export default function useRegister() {
 		first_name,
 		last_name,
 		username,
+		university,
 		email,
 		password,
 		re_password,
