@@ -45,7 +45,7 @@ const PendingUniversityList = () => {
   return (
     <div>
       <UniversityList
-        title="Pending University List"
+        title="Pending University"
         universityList={pendingUniversities}
       />
     </div>
