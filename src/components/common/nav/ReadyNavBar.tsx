@@ -23,6 +23,11 @@ const ReadyNavBar = () => {
             name="Pending University"
             icon={RiAdminLine}
           />
+          <NavItem
+            to="/l/admin/site/approved-university"
+            name="Approved University"
+            icon={RiAdminLine}
+          />
         </>
       )}
     </Navbar>
