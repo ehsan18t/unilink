@@ -1,5 +1,5 @@
 'use client'
-import { useFetch } from '@/hooks/fetch'
+import { useFetch } from '@/hooks/requests'
 import { UniversityList } from '@/components/page-specific'
 
 interface User {
