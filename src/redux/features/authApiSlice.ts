@@ -5,7 +5,10 @@ interface User {
 	last_name: string;
 	username: string;
 	university: number;
+	department: number;
 	email: string;
+	profile_picture: string;
+	user_type: number;
 }
 
 interface SocialAuthArgs {

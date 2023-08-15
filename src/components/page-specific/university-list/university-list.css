@@ -1,0 +1,44 @@
+.user-list {
+  @apply m-2;
+}
+
+.user-list h2 {
+  @apply text-2xl bg-slate-700 p-4 font-bold text-gray-100 px-3 border-b-4 border-slate-600 block;
+}
+
+.user {
+  @apply flex flex-col border-b-2 border-x-2  bg-white p-3 shadow-sm;
+}
+
+.user .primary {
+  @apply flex flex-col md:flex-row items-center justify-between;
+}
+
+.user .secondary {
+  @apply flex flex-col md:flex-row text-center text-xs text-gray-500;
+}
+
+.user .action {
+  @apply flex;
+}
+
+.user .secondary,
+.user .action {
+  @apply items-center justify-between;
+}
+
+.btn {
+  @apply mt-2 text-white font-bold py-2 px-4 rounded;
+}
+
+.user .action .btn-red {
+  @apply btn bg-red-500 hover:bg-red-700;
+}
+
+.user .action .btn-green {
+  @apply btn bg-green-500 hover:bg-green-700;
+}
+
+.user .action .btn-blue {
+  @apply btn bg-blue-500 hover:bg-blue-700;
+}
