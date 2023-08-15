@@ -11,24 +11,33 @@ const Conversation = () => {
     <header>
       <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full"></Image>
       <div>
-        <h2>other_user first_name last_name</h2>
+        <h2 className=" mt-2">Alice</h2>
       </div>
-      {/* <form action="{% url 'private_chat' pk=other_user.id %}" method="POST" enctype="multipart/form-data"> */}
     </header>
     <ul id="chat">
-      <li className="{% if m.sender == user %} me {% else %} you {% endif %}">
+      <li className="me">
         <div className="entete">
           {/* {% if m.sender == user %} */}
-          <h3>date</h3>
-          {/* {% endif %} */}
-          <h2>sender first_name last_name </h2>
-          {/* {% if m.sender != user %} */}
-          <h3>date</h3>
+          <h2>Alice </h2>
         </div>
         <div className="message">
-          <div className="font-bold"><a className="underline underline-offset-2 text-teal-800" href="{{m.attachment.url}}"> Attachment </a></div>
+          Hi
+          {/* <div className="font-bold"><a className="underline underline-offset-2 text-teal-800" href="m.attachment.url"> Attachment </a></div> */}
         </div>
       </li>
+
+      <li className="you">
+        <div className="entete">
+          <h2>Bob</h2>
+        </div>
+        <div className="message">
+          Hello
+          {/* <div className="font-bold"><a className="underline underline-offset-2 text-teal-800" href="m.attachment.url"> Attachment </a></div> */}
+        </div>
+      </li>
+      
+      
+      
     </ul>
     <footer>
       
@@ -52,7 +61,7 @@ const Conversation = () => {
                 </svg>
             </label>
           <input id="fileInput" className="invisible"type="file" name="attachment" />
-          <span  className=" mr-16 rounded-full p-3 bg-gray-100 hover:bg-gray-200" id="uploadFile">asasdfasdfasdfd</span>
+          <span  className=" mr-16 rounded-full p-3 bg-gray-100 hover:bg-gray-200" id="uploadFile"></span>
           <input className="rounded-md pr-3 bg-gray-100 hover:bg-gray-200 cursor-pointer" type="submit" name="click" value="Send" />
           
         </span>
