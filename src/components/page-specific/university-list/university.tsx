@@ -1,14 +1,50 @@
+'use client'
+import { useState } from 'react'
+import { usePost } from '@/hooks/requests'
+
+interface University {
+  id: number
+  name: string
+  domain: string
+  admin: {
+    id: number
+    username: string
+  }
+  is_approved: boolean
+  is_banned: boolean
+}
+
 interface Props {
-  university: any
+  university: University
 }
 
 const UniversityView = ({ university }: Props) => {
-  const handleToggleApproveUniversity = () => {
-    console.log('Approve University')
-  }
+  const [ban, setBan] = useState(university.is_banned)
+  const [approve, setApprove] = useState(university.is_approved)
 
-  const handleToggleBanUniversity = () => {
-    console.log('Ban University')
+  const { loading, error, success, performPostRequest } = usePost()
+
+  const handleToggleStatus = async (
+    task: string,
+    universityToUpdate: University,
+  ) => {
+    let action = ''
+    if (task === 'ban') {
+      action = ban ? 'unban' : 'ban'
+    } else if (task === 'approve') {
+      action = approve ? 'disapprove' : 'approve'
+    }
+
+    const apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/university/${action}/`
+    const payload = {
+      university_id: universityToUpdate.id,
+    }
+
+    const response: any = await performPostRequest({ url: apiUrl, payload })
+    if (response && response.status === 'success') {
+      if (task === 'approve') setApprove(!approve)
+      else if (task === 'ban') setBan(!ban)
+    }
   }
 
   return (
@@ -25,17 +61,20 @@ const UniversityView = ({ university }: Props) => {
         <div className="action">
           <button
             className="btn-blue"
-            onClick={() => handleToggleApproveUniversity()}
+            onClick={() => handleToggleStatus('approve', university)}
+            disabled={loading}
           >
-            {university.is_approved ? 'Disapprove' : 'Approve'}
+            {approve ? 'Disapprove' : 'Approve'}
           </button>
           <button
             className="btn-red"
-            onClick={() => handleToggleBanUniversity()}
+            onClick={() => handleToggleStatus('ban', university)}
+            disabled={loading}
           >
-            {university.is_banned ? 'Unban' : 'Ban'}
+            {ban ? 'Unban' : 'Ban'}
           </button>
         </div>
+        {error && <div>Error: {error.message}</div>}
       </div>
     </li>
   )
