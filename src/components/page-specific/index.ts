@@ -1,0 +1,1 @@
+export { default as UniversityList } from './university-list/UniversityList';
