@@ -25,7 +25,7 @@ export default function useSocialAuth(authenticate: any, provider: string) {
 				})
 				.catch(() => {
 					toast.error('Failed to log in');
-					router.push('/auth/login');
+					router.push('/nl/auth/login');
 				});
 		}
 
