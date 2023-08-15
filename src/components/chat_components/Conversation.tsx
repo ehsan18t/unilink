@@ -7,7 +7,7 @@ const Conversation = () => {
   return (
 
 <div id="container">
-  <main className="ml-9">
+  <main className="">
     <header>
       <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full"></Image>
       <div>

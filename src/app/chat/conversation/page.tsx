@@ -5,7 +5,7 @@ const ConversationBody = () => {
   return (
     <div className="flex">
       <ChatList/>
-      <div className="">
+      <div>
         <Conversation/>
       </div>
     </div>
