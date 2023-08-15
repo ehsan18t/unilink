@@ -53,7 +53,11 @@ export default function Select({
 					required={required}
 				>
 					{options?.map((child: any) => {
-						return <option key={child.value} value={child.value}>{child.label}</option>
+						return (
+								<option key={child.value} value={child.value} disabled={!child.isEnabled}>
+									{child.label}
+								</option>
+							);
 						})
 					}
 				</select>

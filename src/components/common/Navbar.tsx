@@ -42,16 +42,16 @@ export default function Navbar() {
 	const guestLinks = (isMobile: boolean) => (
 		<>
 			<NavLink
-				isSelected={isSelected('/auth/login')}
+				isSelected={isSelected('/nl/auth/login')}
 				isMobile={isMobile}
-				href='/auth/login'
+				href='/nl/auth/login'
 			>
 				Login
 			</NavLink>
 			<NavLink
-				isSelected={isSelected('/auth/register')}
+				isSelected={isSelected('/nl/auth/register')}
 				isMobile={isMobile}
-				href='/auth/register'
+				href='/nl/auth/register'
 			>
 				Register
 			</NavLink>
