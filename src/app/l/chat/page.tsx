@@ -1,10 +1,11 @@
-import ChatList from "@/components/chat_components/ChatList";
+import ChatList from "@/components/chat/ChatList";
+import EmptyState from "@/components/chat/EmptyState";
 
 
 export default function ChatHome() {
     
     return(
-        <div>
+        <div className="flex ml-56">
             <ChatList/>
         </div>
     )

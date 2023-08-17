@@ -1,22 +1,21 @@
 import Image from "next/image"
-import Avatar from '../../public/avatar-male.png'
+import Avatar from "@/public/chat/avatar-male.png"
 import '@/styles/chat/msg.css'
 
 const Conversation = () => {
   return (
 
 <div id="container">
-  <main className="">
+  <main className=" h-48">
     <header>
       <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full"></Image>
       <div>
-        <h2 className=" mt-2">Alice</h2>
+        <h2 className=" mt-2">Bob</h2>
       </div>
     </header>
     <ul id="chat">
       <li className="me">
         <div className="entete">
-          {/* {% if m.sender == user %} */}
           <h2>Alice </h2>
         </div>
         <div className="message">

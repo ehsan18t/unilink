@@ -1,24 +1,23 @@
+import Image from "next/image"
+import Avatar from "@/public/chat/avatar-male.png"
+import '@/styles/chat/msg.css'
 
 const EmptyState = () => {
   return (
-    <div className="
-      px-4
-      py-10
-      sm:px-6
-      lg:px-8
-      h-full
-      flex
-      justify-center
-      items-center
-      bg-gray-100
-    ">
-      <div className="text-center items-center flex flex-col ">
-        <h3 className="mt-2 text-2xl font-semibold text-gray-900">
-          Select a chat or start new conversation
-        </h3>
+
+<div id="container">
+  <main className="">
+    <header className="w-96 h-96">
+      
+      <div className="flex justify-center content-center">
+        <h2 className="">Select a group or people to start conversation.</h2>
       </div>
-    </div>
+    </header>
     
+    
+  </main>
+</div>
+  
   )
 }
 

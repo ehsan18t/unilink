@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Avatar from '@public/chat/avatar-male.png'
+import Avatar from "@/public/chat/avatar-male.png"
 import PeopleList from "@/components/chat/PeopleList";
 import GroupList from "@/components/chat/GroupList";
 import '@/styles/chat/styles.css'
@@ -12,8 +12,8 @@ export default function ChatList() {
     const [viewMode, setviewMode] = useState('')
     
     return(
-        <div className="flex overflow-hidden">
-            <div className="rounded-2xl shadow-skin-shadow bg-skin-sidebar  pt-2 overflow-y-scroll scrollbar">
+        <div className="flex w-auto ml-36 overflow-hidden">
+            <div className="rounded-2xl ml-32 shadow-skin-shadow bg-skin-sidebar  pt-2 overflow-y-scroll scrollbar">
                 {/* <!-- Tab bar --> */}
                 <div role="tablist" aria-label="tabs" className="relative mr-4  w-max mx-auto h-12 grid grid-cols-2 items-center  rounded-full bg-gray-900/20 overflow-hidden shadow-2xl shadow-900/20 transition">
                     <div className="absolute indicator h-11 my-auto top-0 bottom-0 left-0 rounded-full bg-white shadow-md"></div>
@@ -30,6 +30,7 @@ export default function ChatList() {
                 </div>
 
                 {viewMode === 'group' || viewMode === '' ? <GroupList groups={'group'} /> : <PeopleList people={'people'} />}
+                
             </div>
             
         </div >

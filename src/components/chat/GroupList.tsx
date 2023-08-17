@@ -9,7 +9,6 @@ const GroupList = ({ groups } : any) => {
         <div role="tabpanel" id="panel-2" className="absolute top-0 tab-panel p-6 transition duration-300 visible opacity-100">
             {/* <!-- people 1 --> */}
             <li className="border-b-[1px] border-slate-300 [&:last-child]:border-b-0 flex space-x-3 justify-between place-items-center mr-10 pt-3 pb-3 cursor-pointer">
-                {/* <img className="rounded-full w-8 h-8" src="{% if u.profile_picture %} {{u.profile_picture.url}}  {% else %} {% static 'img/avatar/avatar-male.png' %} {% endif %}" alt="People image" /> */}
                 <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full" />
                 <div>
                     <p className="  text-sm text-skin-svg">Operating System</p>
@@ -22,7 +21,6 @@ const GroupList = ({ groups } : any) => {
                 </div>
             </li>
             <li className="border-b-[1px] border-slate-300 [&:last-child]:border-b-0 flex space-x-3 justify-between place-items-center mr-10 pt-3 pb-3 cursor-pointer">
-                {/* <img className="rounded-full w-8 h-8" src="{% if u.profile_picture %} {{u.profile_picture.url}}  {% else %} {% static 'img/avatar/avatar-male.png' %} {% endif %}" alt="People image" /> */}
                 <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full" />
                 <div>
                     <p className="  text-sm text-skin-svg">Software Engineering</p>
@@ -35,7 +33,6 @@ const GroupList = ({ groups } : any) => {
                 </div>
             </li>
             <li className="border-b-[1px] border-slate-300 [&:last-child]:border-b-0 flex space-x-3 justify-between place-items-center mr-10 pt-3 pb-3 cursor-pointer">
-                {/* <img className="rounded-full w-8 h-8" src="{% if u.profile_picture %} {{u.profile_picture.url}}  {% else %} {% static 'img/avatar/avatar-male.png' %} {% endif %}" alt="People image" /> */}
                 <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full" />
                 <div>
                     <p className="  text-sm text-skin-svg">Economics</p>
@@ -47,6 +44,8 @@ const GroupList = ({ groups } : any) => {
                     </div>
                 </div>
             </li>
+
+            <div className="flex mt-4 text-xs">Please select a group to start conversation</div>
         </div>
     </div>
   )
