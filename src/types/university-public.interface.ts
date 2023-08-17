@@ -1,4 +1,4 @@
 export interface PublicUniversity {
-    id: number
+    readonly id: number
     name: string
-  }
+}
