@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation'
 import { Spinner } from '@/components/common'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
-import { UserType } from '@/types'
+import { UserType } from '@/enums'
 
 interface Props {
   children: React.ReactNode
