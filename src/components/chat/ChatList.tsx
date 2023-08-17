@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Avatar from '@public/user_img/avatar-male.png'
+import Avatar from '@public/chat/avatar-male.png'
 import PeopleList from "@/components/chat/PeopleList";
 import GroupList from "@/components/chat/GroupList";
-import '@/styles/chatStyles/styles.css'
+import '@/styles/chat/styles.css'
 
 export default function ChatList() {
     

@@ -1,7 +1,6 @@
 import Image from "next/image"
-import Avatar from '../../public/user_img/avatar-male.png'
-import AttachmentIcon from 'public/chatSvgs/attachment.png'
-import '@/styles/chatStyles/msg.css'
+import Avatar from '../../public/avatar-male.png'
+import '@/styles/chat/msg.css'
 
 const Conversation = () => {
   return (

@@ -1,6 +1,6 @@
 
-import Image from "next/image";
-import Avatar from '../../public/user_img/avatar-male.png'
+import Image from "next/image"
+import Avatar from '../../public/chat/avatar-male.png'
 
 const GroupList = ({ groups } : any) => {
   return (
