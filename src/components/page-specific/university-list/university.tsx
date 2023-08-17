@@ -1,18 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { usePost } from '@/hooks/requests'
-
-interface University {
-  id: number
-  name: string
-  domain: string
-  admin: {
-    id: number
-    username: string
-  }
-  is_approved: boolean
-  is_banned: boolean
-}
+import { University } from '@/types'
 
 interface Props {
   university: University

@@ -4,11 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRegister } from '@/hooks'
 import { Input, Select } from '@/components/forms'
 import { Spinner } from '@/components/common'
-
-interface University {
-  id: number
-  name: string
-}
+import { PublicUniversity } from '@/types'
 
 export default function RegisterForm() {
   const {
@@ -48,7 +44,7 @@ export default function RegisterForm() {
             label: 'Select a university',
             isEnabled: true,
           },
-          ...data.map((item: University) => {
+          ...data.map((item: PublicUniversity) => {
             return {
               value: item.id,
               label: item.name,

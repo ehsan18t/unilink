@@ -1,26 +1,6 @@
 import './university-list.css'
 import UniversityView from './university'
-
-interface User {
-  id: number
-  first_name: string
-  last_name: string
-  username: string
-  email: string
-  university: number
-  department: number
-  profile_picture: string
-  user_type: number
-}
-
-interface University {
-  id: number
-  name: string
-  domain: string
-  admin: User
-  is_approved: boolean
-  is_banned: boolean
-}
+import { University } from '@/types'
 
 interface Props {
   title: string

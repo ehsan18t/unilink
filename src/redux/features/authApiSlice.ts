@@ -1,15 +1,5 @@
 import { apiSlice } from '../services/apiSlice';
-
-interface User {
-	first_name: string;
-	last_name: string;
-	username: string;
-	university: number;
-	department: number;
-	email: string;
-	profile_picture: string;
-	user_type: number;
-}
+import { User } from '@/types';
 
 interface SocialAuthArgs {
 	provider: string;

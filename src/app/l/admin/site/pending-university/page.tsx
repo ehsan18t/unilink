@@ -1,27 +1,7 @@
 'use client'
 import { useFetch } from '@/hooks/requests'
 import { UniversityList } from '@/components/page-specific'
-
-interface User {
-  id: number
-  first_name: string
-  last_name: string
-  username: string
-  email: string
-  university: number
-  department: number
-  profile_picture: string
-  user_type: number
-}
-
-interface University {
-  id: number
-  name: string
-  domain: string
-  admin: User
-  is_approved: boolean
-  is_banned: boolean
-}
+import { University } from '@/types'
 
 const PendingUniversityList = () => {
   const apiUrl = process.env.NEXT_PUBLIC_HOST + '/api/university/pending/'
