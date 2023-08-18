@@ -6,7 +6,6 @@ const ApprovedUniversityList = () => {
   const {
     data: approvedUniversities,
     isLoading,
-    isFetching,
     isError,
   } = useRetrieveApprovedUniversityQuery()
 
