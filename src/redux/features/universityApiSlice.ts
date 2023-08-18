@@ -1,14 +1,22 @@
 import { apiSlice } from '../services/apiSlice';
 import { User, University, PublicUniversity } from '@/types';
 
-const authApiSlice = apiSlice.injectEndpoints({
+const universityApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		retrievePublicUniversity: builder.query<PublicUniversity[], void>({
 			query: () => '/university/list/',
-		})
+		}),
+		retrievePendingUniversity: builder.query<University[], void>({
+			query: () => '/university/pending/',
+		}),
+		retrieveApprovedUniversity: builder.query<University[], void>({
+			query: () => '/university/approved/',
+		}),
 	}),
 });
 
 export const {
 	useRetrievePublicUniversityQuery,
-} = authApiSlice;
+	useRetrievePendingUniversityQuery,
+	useRetrieveApprovedUniversityQuery,
+} = universityApiSlice;
