@@ -5,7 +5,7 @@ import '@/styles/chat/msg.css'
 const Conversation = () => {
   return (
 
-<div id="container">
+<div id="container" className=" mb-96">
   <main className=" h-48">
     <header>
       <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full"></Image>
