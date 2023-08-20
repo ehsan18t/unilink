@@ -1,0 +1,9 @@
+site_name: UniLink
+nav:
+- Home: 'index.md'
+- Admin: 'admin.md'
+- University: 'university.md'
+- Student: 'student.md'
+- Faculty: 'faculty.md'
+
+
