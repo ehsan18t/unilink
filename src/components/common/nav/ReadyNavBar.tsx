@@ -1,6 +1,6 @@
 'use client'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
-import { AiOutlineHome, AiOutlineShop } from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineShop, AiFillMessage } from 'react-icons/ai'
 import { RiAdminLine } from 'react-icons/ri'
 import Navbar from '@/components/common/nav/Navbar'
 import { NavItem } from '@/components/common/nav/NavItem'
@@ -30,6 +30,17 @@ const ReadyNavBar = () => {
           />
         </>
       )}
+
+      {user && user.user_type == 5 && (
+        <>
+          <NavItem
+            to="/l/admin/site/dashboard"
+            name="Chat"
+            icon={AiFillMessage}
+          />
+        </>
+      )}
+
     </Navbar>
   )
 }
