@@ -54,8 +54,8 @@ const UniversityView = ({ university }: Props) => {
     let response: any
     const functionExecuteWithExceptionHandling = async (func: any) => {
       try {
-        response = await func()
-        return response
+        const res = await func()
+        return res
       } catch (error) {
         console.error('Mutation Error:', error)
       }
@@ -66,9 +66,9 @@ const UniversityView = ({ university }: Props) => {
       setIsBanLoading(true)
       actionFunction = isBan ? () => unbanOnAction() : () => banOnAction()
 
-      response = functionExecuteWithExceptionHandling(actionFunction)
+      response = await functionExecuteWithExceptionHandling(actionFunction)
       setIsBanLoading(false)
-      if (response?.data.status === 'success') {
+      if (response.data.status === 'success') {
         setIsBan(!isBan)
       }
     } else {
@@ -77,9 +77,9 @@ const UniversityView = ({ university }: Props) => {
         ? () => disapproveOnAction()
         : () => approveOnAction()
 
-      response = functionExecuteWithExceptionHandling(actionFunction)
+      response = await functionExecuteWithExceptionHandling(actionFunction)
       setIsApproveLoading(false)
-      if (response?.data.status === 'success') {
+      if (response.data.status === 'success') {
         setIsApprove(!isApproved)
       }
     }
