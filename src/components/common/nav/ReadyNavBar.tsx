@@ -34,7 +34,7 @@ const ReadyNavBar = () => {
       {user && user.user_type == 5 && (
         <>
           <NavItem
-            to="/l/admin/site/dashboard"
+            to="/l/chat/"
             name="Chat"
             icon={AiFillMessage}
           />
