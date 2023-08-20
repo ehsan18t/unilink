@@ -21,6 +21,11 @@ const universityApiSlice = apiSlice.injectEndpoints({
 		retrieveApprovedUniversity: builder.query<University[], void>({
 			query: () => '/university/approved/',
 		}),
+		registerUniversity: builder.mutation({
+			query: ({ name, domain, admin: { first_name, last_name, username, email } }) => (
+				returnObject('create', { name, domain, admin: { first_name, last_name, username, email } })
+			)
+		}),
 		approve: builder.mutation({
 			query: ({ university_id }) => (returnObject('approve', { university_id }))
 		}),
@@ -40,6 +45,7 @@ export const {
 	useRetrievePublicUniversityQuery,
 	useRetrievePendingUniversityQuery,
 	useRetrieveApprovedUniversityQuery,
+	useRegisterUniversityMutation,
 	useApproveMutation,
 	useDisapproveMutation,
 	useBanMutation,
