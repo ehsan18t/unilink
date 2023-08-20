@@ -10,7 +10,7 @@ const Conversation = () => {
     <header>
       <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full"></Image>
       <div>
-        <h2 className=" mt-2">Bob</h2>
+        <h2 className=" mt-2">Alice</h2>
       </div>
     </header>
     <ul id="chat">
