@@ -4,7 +4,7 @@ import { University } from '@/types'
 
 interface Props {
   title: string
-  universityList: University[]
+  universityList: University[] | undefined
 }
 
 const UniversityList = ({ title = 'List', universityList }: Props) => {
@@ -12,7 +12,7 @@ const UniversityList = ({ title = 'List', universityList }: Props) => {
     <div className="user-list">
       <h2>{title} List</h2>
       <ul>
-        {universityList.length > 0 ? (
+        {universityList ? (
           universityList.map((university: University) => (
             <UniversityView key={university.id} university={university} />
           ))
