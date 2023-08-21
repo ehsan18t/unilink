@@ -1,6 +1,15 @@
 import { apiSlice } from '../services/apiSlice';
 import { University, PublicUniversity } from '@/types';
 
+const returnObject = (endpoint: string, params: any) => {
+	return {
+		url: `/university/${endpoint}/`,
+		method: 'POST',
+		body: params,
+	}
+}
+
+
 const universityApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		retrievePublicUniversity: builder.query<PublicUniversity[], void>({
@@ -12,33 +21,22 @@ const universityApiSlice = apiSlice.injectEndpoints({
 		retrieveApprovedUniversity: builder.query<University[], void>({
 			query: () => '/university/approved/',
 		}),
+		registerUniversity: builder.mutation({
+			query: ({ name, domain, admin: { first_name, last_name, username, email } }) => (
+				returnObject('create', { name, domain, admin: { first_name, last_name, username, email } })
+			)
+		}),
 		approve: builder.mutation({
-			query: ({ university_id }) => ({
-				url: '/university/approve/',
-				method: 'POST',
-				body: { university_id },
-			}),
+			query: ({ university_id }) => (returnObject('approve', { university_id }))
 		}),
 		disapprove: builder.mutation({
-			query: ({ university_id }) => ({
-				url: '/university/disapprove/',
-				method: 'POST',
-				body: { university_id },
-			}),
+			query: ({ university_id }) => (returnObject('disapprove', { university_id }))
 		}),
 		ban: builder.mutation({
-			query: ({ university_id }) => ({
-				url: '/university/ban/',
-				method: 'POST',
-				body: { university_id },
-			}),
+			query: ({ university_id }) => (returnObject('ban', { university_id }))
 		}),
 		unban: builder.mutation({
-			query: ({ university_id }) => ({
-				url: '/university/unban/',
-				method: 'POST',
-				body: { university_id },
-			}),
+			query: ({ university_id }) => (returnObject('unban', { university_id }))
 		}),
 	}),
 });
@@ -47,6 +45,7 @@ export const {
 	useRetrievePublicUniversityQuery,
 	useRetrievePendingUniversityQuery,
 	useRetrieveApprovedUniversityQuery,
+	useRegisterUniversityMutation,
 	useApproveMutation,
 	useDisapproveMutation,
 	useBanMutation,
