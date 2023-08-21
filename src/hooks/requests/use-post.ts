@@ -28,10 +28,12 @@ function usePost() {
       if (!response.ok) {
         throw new Error(`Failed to perform POST request to ${url}`);
       }
+
+      const responseData = await response.json();
       setSuccess(true); // Set success flag
-      return response.json();
-    } catch (error: any) {
-      setError(error);
+      return responseData;
+    } catch (error) {
+      setError(error instanceof Error ? error : new Error('An error occurred.'));
     } finally {
       setLoading(false);
     }

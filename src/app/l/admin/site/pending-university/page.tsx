@@ -1,25 +1,22 @@
 'use client'
-import { useFetch } from '@/hooks/requests'
 import { UniversityList } from '@/components/page-specific'
-import { University } from '@/types'
+import { useRetrievePendingUniversityQuery } from '@/redux/features/universityApiSlice'
 
 const PendingUniversityList = () => {
-  const apiUrl = process.env.NEXT_PUBLIC_HOST + '/api/university/pending/'
-
   const {
     data: pendingUniversities,
-    loading,
-    error,
-  } = useFetch<University>(apiUrl)
+    isLoading,
+    isError,
+  } = useRetrievePendingUniversityQuery()
 
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>
   } else {
     console.log(pendingUniversities)
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>
+  if (isError) {
+    return <div>Error: Fetch Failed!</div>
   }
 
   return (

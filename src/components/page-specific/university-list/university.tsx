@@ -1,38 +1,87 @@
 'use client'
 import { useState } from 'react'
-import { usePost } from '@/hooks/requests'
 import { University } from '@/types'
+import {
+  useApproveMutation,
+  useDisapproveMutation,
+  useBanMutation,
+  useUnbanMutation,
+} from '@/redux/features/universityApiSlice'
+import { useMutation } from '@/hooks'
 
 interface Props {
   university: University
 }
 
 const UniversityView = ({ university }: Props) => {
-  const [ban, setBan] = useState(university.is_banned)
-  const [approve, setApprove] = useState(university.is_approved)
+  // Request hooks
+  const { approveOnAction } = useMutation(
+    useApproveMutation,
+    { university_id: university.id },
+    'approve',
+  )
 
-  const { loading, error, success, performPostRequest } = usePost()
+  const { disapproveOnAction } = useMutation(
+    useDisapproveMutation,
+    { university_id: university.id },
+    'disapprove',
+  )
 
-  const handleToggleStatus = async (
-    task: string,
-    universityToUpdate: University,
-  ) => {
-    let action = ''
+  const { banOnAction } = useMutation(
+    useBanMutation,
+    { university_id: university.id },
+    'ban',
+  )
+
+  const { unbanOnAction } = useMutation(
+    useUnbanMutation,
+    { university_id: university.id },
+    'unban',
+  )
+
+  // States
+  const [isBanLoading, setIsBanLoading] = useState(false)
+  const [isApproveLoading, setIsApproveLoading] = useState(false)
+  const [isBan, setIsBan] = useState(university.is_banned)
+  const [isApproved, setIsApprove] = useState(university.is_approved)
+
+  // Event handlers
+  const handleToggleStatus = async (e: any, task: 'ban' | 'approve') => {
+    // Event specific code here
+    e.preventDefault()
+
+    let actionFunction: any
+    let response: any
+    const functionExecuteWithExceptionHandling = async (func: any) => {
+      try {
+        const res = await func()
+        return res
+      } catch (error) {
+        console.error('Mutation Error:', error)
+      }
+    }
+
+    // handle logic for the action
     if (task === 'ban') {
-      action = ban ? 'unban' : 'ban'
-    } else if (task === 'approve') {
-      action = approve ? 'disapprove' : 'approve'
-    }
+      setIsBanLoading(true)
+      actionFunction = isBan ? () => unbanOnAction() : () => banOnAction()
 
-    const apiUrl = `${process.env.NEXT_PUBLIC_HOST}/api/university/${action}/`
-    const payload = {
-      university_id: universityToUpdate.id,
-    }
+      response = await functionExecuteWithExceptionHandling(actionFunction)
+      setIsBanLoading(false)
+      if (response.data.status === 'success') {
+        setIsBan(!isBan)
+      }
+    } else {
+      setIsApproveLoading(true)
+      actionFunction = isApproved
+        ? () => disapproveOnAction()
+        : () => approveOnAction()
 
-    const response: any = await performPostRequest({ url: apiUrl, payload })
-    if (response && response.status === 'success') {
-      if (task === 'approve') setApprove(!approve)
-      else if (task === 'ban') setBan(!ban)
+      response = await functionExecuteWithExceptionHandling(actionFunction)
+      setIsApproveLoading(false)
+      if (response.data.status === 'success') {
+        setIsApprove(!isApproved)
+      }
     }
   }
 
@@ -50,20 +99,19 @@ const UniversityView = ({ university }: Props) => {
         <div className="action">
           <button
             className="btn-blue"
-            onClick={() => handleToggleStatus('approve', university)}
-            disabled={loading}
+            onClick={(event) => handleToggleStatus(event, 'approve')}
+            disabled={isApproveLoading}
           >
-            {approve ? 'Disapprove' : 'Approve'}
+            {isApproved ? 'Disapprove' : 'Approve'}
           </button>
           <button
             className="btn-red"
-            onClick={() => handleToggleStatus('ban', university)}
-            disabled={loading}
+            onClick={(event) => handleToggleStatus(event, 'ban')}
+            disabled={isBanLoading}
           >
-            {ban ? 'Unban' : 'Ban'}
+            {isBan ? 'Unban' : 'Ban'}
           </button>
         </div>
-        {error && <div>Error: {error.message}</div>}
       </div>
     </li>
   )
