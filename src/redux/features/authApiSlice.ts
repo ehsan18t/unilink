@@ -1,12 +1,6 @@
 import { apiSlice } from '../services/apiSlice';
 import { User } from '@/types';
 
-interface SocialAuthArgs {
-	provider: string;
-	state: string;
-	code: string;
-}
-
 interface CreateUserResponse {
 	success: boolean;
 	user: User;
@@ -16,21 +10,6 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		retrieveUser: builder.query<User, void>({
 			query: () => '/users/me/',
-		}),
-		socialAuthenticate: builder.mutation<
-			CreateUserResponse,
-			SocialAuthArgs
-		>({
-			query: ({ provider, state, code }) => ({
-				url: `/o/${provider}/?state=${encodeURIComponent(
-					state
-				)}&code=${encodeURIComponent(code)}`,
-				method: 'POST',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-			}),
 		}),
 		login: builder.mutation({
 			query: ({ email, password }) => ({
@@ -92,7 +71,6 @@ const authApiSlice = apiSlice.injectEndpoints({
 
 export const {
 	useRetrieveUserQuery,
-	useSocialAuthenticateMutation,
 	useLoginMutation,
 	useRegisterMutation,
 	useVerifyMutation,
