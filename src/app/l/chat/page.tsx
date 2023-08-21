@@ -5,7 +5,7 @@ import EmptyState from "@/components/chat/EmptyState";
 export default function ChatHome() {
     
     return(
-        <div className="flex ml-56">
+        <div className="">
             <ChatList/>
         </div>
     )
