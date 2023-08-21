@@ -5,6 +5,7 @@ import Image from "next/image";
 import Avatar from "@/public/chat/avatar-male.png"
 import PeopleList from "@/components/chat/PeopleList";
 import GroupList from "@/components/chat/GroupList";
+import Link from "next/link";
 
 export default function ChatList() {
     
@@ -17,7 +18,7 @@ export default function ChatList() {
                 <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chats</h2>
                 <li>
                     {/* people/group list */}
-                    <a
+                    <Link href="/l/chat/conversation"
                         className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer bg-gray-100 focus:outline-none">
                         <Image className="object-cover w-10 h-10 rounded-full"
                             src={Avatar} alt="username" />
@@ -28,8 +29,8 @@ export default function ChatList() {
                             </div>
                             <span className="block ml-2 text-sm text-gray-600">I need to go</span>
                         </div>
-                    </a>
-                    <a
+                    </Link>
+                    <Link href="/l/chat/conversation"
                         className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                         <Image className="object-cover w-10 h-10 rounded-full"
                             src={Avatar} alt="username" />
@@ -40,8 +41,8 @@ export default function ChatList() {
                             </div>
                             <span className="block ml-2 text-sm text-gray-600">Good night</span>
                         </div>
-                    </a>
-                    <a
+                    </Link>
+                    <Link href="/l/chat/conversation"
                         className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none">
                         <Image className="object-cover w-10 h-10 rounded-full"
                             src={Avatar} alt="username" />
@@ -52,7 +53,7 @@ export default function ChatList() {
                             </div>
                             <span className="block ml-2 text-sm text-gray-600">Good Morning</span>
                         </div>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </div>

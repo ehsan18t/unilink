@@ -6,7 +6,7 @@ export default function ChatHome() {
     
     return(
         <>
-            
+            <EmptyState/>
         </>
     )
     
