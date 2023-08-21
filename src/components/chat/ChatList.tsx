@@ -3,8 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Avatar from "@/public/chat/avatar-male.png"
-import PeopleList from "@/components/chat/PeopleList";
-import GroupList from "@/components/chat/GroupList";
 import Link from "next/link";
 
 export default function ChatList() {
