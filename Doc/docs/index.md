@@ -5,6 +5,12 @@
 
 ## ***Create User***
 
+**Brief**
+
+
+To create a user one needs to send the the information in a jason format and depending on that our system will 
+register that  as a profile.
+
     Used Api : http://127.0.0.1:8000/api/users/
     
 **Request Header**
@@ -25,14 +31,16 @@
     }
 
 
-**Brief**
 
-
-    To create a user one needs to send the the information in a jason format and depending on that our system will 
-    register that  as a profile.
 
 
 ## **JWT User Create**
+
+**Brief**
+
+
+To create a user one needs to send the the information in a jason format and depending on that our system will 
+register that  as a profile.
 
     Used Api :http://127.0.0.1:8000/api/jwt/create/
    
@@ -48,13 +56,13 @@
         "password": "myTestPass123."
     }
 
-**Brief**
-
-
-    To create a user one needs to send the the information in a jason format and depending on that our system will 
-    register that  as a profile.
 
 ## ***Create User (With University)***    
+
+**Brief**
+
+To create a user one needs to send the the information in a jason format and depending on that our system will 
+register that  as a profile.
 
      Used Api : http://127.0.0.1:8000/api/users/
 
@@ -74,14 +82,14 @@
     "re_password": "myTestPass123."
     }  
 
-**Brief**
-
-
-    To create a user one needs to send the the information in a jason format and depending on that our system will 
-    register that  as a profile.     
+     
 
 
 ## ***JWT User Create (Site Admin)***
+**Brief**
+
+To create a user one needs to send the the information in a jason format and depending on that our system will 
+register that  as a profile.    
 
     Used Api : http://127.0.0.1:8000/api/jwt/create/
 
@@ -96,12 +104,14 @@
     "password": "asxzasxz"
     }
 
-**Brief**
 
-    To create a user one needs to send the the information in a jason format and depending on that our system will 
-    register that  as a profile.    
 
 ## ***Account Activiton***
+
+**Brief**
+
+To activate the registered account a token will be generated and sent to the corrosponding e-mail to verfiy the
+owner. After verfying the account will be registered.
 
     Used Api : http://127.0.0.1:8000/api/users/activation/
 
@@ -116,10 +126,6 @@
     "token":"br5ds7-38480a3770236a3c5ae4056c5798d152"
     }
 
-**Brief**
-
-    To activate the registered account a token will be generated and sent to the corrosponding e-mail to verfiy the
-    owner. After verfying the account will be registered.
 
 ## ***JWT User Refreash***
 
@@ -148,6 +154,10 @@
     }
 
 ## ***Reset Password Confirmation***  
+
+**Brief**
+
+To reset the password of an account this api is being used.
 
     Used Api: http://127.0.0.1:8000/api/users/reset_password_confirm/
 
