@@ -5,9 +5,9 @@ import EmptyState from "@/components/chat/EmptyState";
 export default function ChatHome() {
     
     return(
-        <div className="">
-            <ChatList/>
-        </div>
+        <>
+            
+        </>
     )
     
 }

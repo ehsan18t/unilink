@@ -1,73 +1,67 @@
 import Image from "next/image"
 import Avatar from "@/public/chat/avatar-male.png"
-import '@/styles/chat/msg.css'
 
 const Conversation = () => {
   return (
+    <div className="hidden lg:col-span-2 lg:block">
+      <div className="w-full">
+        <div className="relative flex items-center p-3 border-b border-gray-300">
+          <Image className="object-cover w-10 h-10 rounded-full"
+            src={Avatar} alt="username" />
+          <span className="block ml-2 font-bold text-gray-600">Alice</span>
+        </div>
+        <div className="relative w-full p-6 overflow-y-auto h-[25rem]">
+          <ul className="space-y-2">
+            {/* other end messages */}
+            <li className="flex justify-start">
+              <div className="relative max-w-xl px-4 py-2 text-gray-700 rounded shadow">
+                <span className="block">Hi</span>
+              </div>
+            </li>
+            {/* my end messages */}
+            <li className="flex justify-end">
+              <div className="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
+                <span className="block">Hiiii</span>
+              </div>
+            </li>
+            <li className="flex justify-end">
+              <div className="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
+                <span className="block">how are you?</span>
+              </div>
+            </li>
+            <li className="flex justify-start">
+              <div className="relative max-w-xl px-4 py-2 text-gray-700 rounded shadow">
+                <span className="block">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-<div id="container" className=" mb-96">
-  <main className=" h-48">
-    <header>
-      <Image src={Avatar} width={45} height={35} alt="avatar" className="rounded-full"></Image>
-      <div>
-        <h2 className=" mt-2">Alice</h2>
+        <div className="flex items-center justify-between w-full p-3 border-t border-gray-300">
+
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+            </svg>
+          </button>
+
+          <input type="text" placeholder="Type here.."
+            className="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
+            name="message" required />
+
+          <button type="submit">
+            <svg className="w-5 h-5 text-gray-500 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20" fill="currentColor">
+              <path
+                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            </svg>
+          </button>
+        </div>
       </div>
-    </header>
-    <ul id="chat">
-      <li className="me">
-        <div className="entete">
-          <h2>Alice </h2>
-        </div>
-        <div className="message">
-          Hi
-          {/* <div className="font-bold"><a className="underline underline-offset-2 text-teal-800" href="m.attachment.url"> Attachment </a></div> */}
-        </div>
-      </li>
-
-      <li className="you">
-        <div className="entete">
-          <h2>Bob</h2>
-        </div>
-        <div className="message">
-          Hello
-          {/* <div className="font-bold"><a className="underline underline-offset-2 text-teal-800" href="m.attachment.url"> Attachment </a></div> */}
-        </div>
-      </li>
-      
-      
-      
-    </ul>
-    <footer>
-      
-        <textarea name="message" placeholder="Type your message"></textarea>
-        <span className="flex">
-          {/* <label htmlFor="file-upload" className="rounded-full p-3 bg-gray-100 hover:bg-gray-200 cursor-pointer h-5 w-5" > <Image alt="" src={AttachmentIcon} width={30} height={30}/>  </label> */}
-            <label htmlFor="fileInput" className="mr-4 cursor-pointer">
-                <svg
-                className="w-6 h-6 text-gray-500 hover:text-gray-700 transition duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                >
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                ></path>
-                </svg>
-            </label>
-          <input id="fileInput" className="invisible"type="file" name="attachment" />
-          <span  className=" mr-16 rounded-full p-3 bg-gray-100 hover:bg-gray-200" id="uploadFile"></span>
-          <input className="rounded-md pr-3 bg-gray-100 hover:bg-gray-200 cursor-pointer" type="submit" name="click" value="Send" />
-          
-        </span>
-    </footer>
-    
-  </main>
-</div>
-  
+    </div>
   )
 }
 
