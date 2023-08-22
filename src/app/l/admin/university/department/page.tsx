@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useState } from 'react'
 import { useRetrieveDepartmentQuery } from '@/redux/features/departmentApiSlice'
 import DepartmentItem from '@/components/page-specific/department/DepartmentItem'
@@ -6,17 +7,30 @@ import List from '@mui/material/List'
 import { Department } from '@/types'
 
 const ApprovedUniversityList = () => {
+  const [removedDepartment, setRemovedDepartment] = useState<
+    Department | undefined
+  >()
   const { data: departments, isLoading, isError } = useRetrieveDepartmentQuery()
-  const [departmentList, setDepartmentList] = useState<Department[]>()
+  const [departmentList, setDepartmentList] = useState<
+    Department[] | undefined
+  >([])
 
   useEffect(() => {
-    if (departments) {
-      setDepartmentList(departments)
-    }
+    setDepartmentList(departments)
   }, [departments])
 
+  useEffect(() => {
+    if (removedDepartment) {
+      setDepartmentList((prev) => {
+        return prev?.filter(
+          (department) => department.id !== removedDepartment.id,
+        )
+      })
+    }
+  }, [removedDepartment])
+
   const handleDelete = async (department: Department) => {
-    console.log('delete ', department)
+    setRemovedDepartment(department)
   }
 
   if (isLoading) {
