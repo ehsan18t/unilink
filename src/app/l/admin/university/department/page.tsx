@@ -6,12 +6,22 @@ import ListContainer from '@/components/common/ListContainer'
 import Modal from '@/components/common/Modal'
 import Input from '@/components/forms/Input'
 import Button from '@/components/common/Button'
-import { useCreateDepartment, useSharedModal } from '@/hooks'
+import { useSharedModal, useFormSubmit } from '@/hooks'
+import { useRegisterDepartmentMutation } from '@/redux/features/departmentApiSlice'
 
 const DepartmentList = () => {
   const { data: departments, isLoading, isError } = useRetrieveDepartmentQuery()
-  const { department_name, department_code, onChange, onSubmit } =
-    useCreateDepartment()
+  const [register] = useRegisterDepartmentMutation()
+
+  const initialFormData = {
+    name: '',
+    code: '',
+  }
+
+  const { formData, onChange, onSubmit, updateFormData } = useFormSubmit(
+    register,
+    initialFormData,
+  )
 
   const { updateModalState } = useSharedModal()
 
@@ -33,10 +43,10 @@ const DepartmentList = () => {
       >
         <Input
           key="department_name"
-          labelId="department_name"
+          labelId="name"
           type="text"
           onChange={onChange}
-          value={department_name}
+          value={formData.name}
           required={true}
           className="mb-5 w-full"
         >
@@ -44,19 +54,22 @@ const DepartmentList = () => {
         </Input>
         <Input
           key="department_code"
-          labelId="department_code"
+          labelId="code"
           type="text"
           onChange={onChange}
-          value={department_code}
+          value={formData.code}
           required={true}
         >
           CodeName
         </Input>
         <div className="flex flex-col items-center">
           <Button
-            onClick={(e: any) => {
-              onSubmit(e)
-              updateModalState(false)
+            onClick={async (e: any) => {
+              const res = await onSubmit(e)
+              if (res?.data?.id) {
+                updateModalState(false)
+                updateFormData(initialFormData)
+              }
             }}
             className="mt-5"
           >
