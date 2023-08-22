@@ -4,10 +4,16 @@ import Button from '@/components/common/Button'
 interface ModalProps {
   text?: string
   title?: string
+  center?: boolean
   children: React.ReactNode
 }
 
-const Modal = ({ text = 'Open', title, children }: ModalProps) => {
+const Modal = ({
+  text = 'Open',
+  title,
+  center = true,
+  children,
+}: ModalProps) => {
   const [isAnimating, setIsAnimating] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -34,16 +40,16 @@ const Modal = ({ text = 'Open', title, children }: ModalProps) => {
           isAnimating ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <div className="fixed inset-0 bg-black opacity-50"></div>
+        <div className="w-full fixed inset-0 bg-black opacity-50"></div>
         <div className="bg-white rounded-lg p-6 shadow-md z-10">
-          {title && <h1 className="text-xl mb-4">{title}</h1>}
+          {title && (
+            <h1 className={`${center ? 'text-center' : ''} text-xl mb-4`}>
+              {title}
+            </h1>
+          )}
           {children}
-          <button
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none"
-            onClick={closeModal}
-          >
-            Close
-          </button>
+
+          <Button onClick={closeModal}>Close</Button>
         </div>
       </div>
     </div>
