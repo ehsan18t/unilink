@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from '@/components/common/Button'
 import cn from 'classnames'
+import { useSharedModal } from '@/hooks'
 
 interface ModalProps {
   text?: string
@@ -20,17 +21,17 @@ const Modal = ({
   children,
 }: ModalProps) => {
   const [isAnimating, setIsAnimating] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const { isModalOpen, updateModalState } = useSharedModal()
 
   const openModal = () => {
-    setIsModalOpen(true)
+    updateModalState(true)
   }
 
   const closeModal = () => {
     setIsAnimating(true)
     setTimeout(() => {
       setIsAnimating(false)
-      setIsModalOpen(false)
+      updateModalState(false)
     }, 300) // Animation duration (milliseconds)
   }
 
