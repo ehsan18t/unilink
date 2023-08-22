@@ -30,7 +30,7 @@ const Modal = ({
   }
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="w-full flex justify-center items-center">
       <Button onClick={openModal}>{text}</Button>
 
       <div
@@ -41,15 +41,31 @@ const Modal = ({
         }`}
       >
         <div className="w-full fixed inset-0 bg-black opacity-50"></div>
-        <div className="bg-white rounded-lg p-6 shadow-md z-10">
+        <div className="bg-white rounded-lg p-6 shadow-md z-10 relative">
+          <button
+            className="transition ease-in-out duration-300 absolute top-0 right-0 m-2 p-2 text-gray-600 hover:text-gray-800 hover:bg-slate-300 rounded-full"
+            onClick={closeModal}
+            aria-label="Close"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+
           {title && (
             <h1 className={`${center ? 'text-center' : ''} text-xl mb-4`}>
               {title}
             </h1>
           )}
           {children}
-
-          <Button onClick={closeModal}>Close</Button>
         </div>
       </div>
     </div>
