@@ -17,10 +17,10 @@ const departmentApiSlice = apiSlice.injectEndpoints({
 		retrieveDepartment: builder.query<Department[], void>({
 			query: () => '/department/list/',
 		}),
-		registerDepartment: builder.mutation({
-			query: ({ name, code }) => (
-				returnObject('create', { name, code })
-			)
+		registerDepartment: builder.mutation<Department, { name: string; code: string }>({
+		  query: ({ name, code }) => returnObject('create', { name, code }),
+		  // Explicitly return response in transformResponse
+		  transformResponse: (response: any) => response,
 		}),
 		deleteDepartment: builder.mutation({
 			query: ({ department_id }) => (
