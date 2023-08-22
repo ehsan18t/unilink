@@ -2,7 +2,7 @@ import React from 'react'
 
 interface Props {
   color?: 'blue' | 'red' | 'green'
-  onClick?: () => void
+  onClick?: (e: any) => void
   className?: string
   children: React.ReactNode
 }
