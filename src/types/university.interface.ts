@@ -8,3 +8,8 @@ export interface University {
     is_approved: boolean
     is_banned: boolean
 }
+
+export interface PublicUniversity {
+    readonly id: number
+    name: string
+}
