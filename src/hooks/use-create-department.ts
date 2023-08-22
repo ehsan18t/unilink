@@ -14,7 +14,6 @@ export default function useRegister() {
 
 	const onChange = (event: any) => {
         const { name, value } = event.target;
-        console.log(name, value);
 
 		setFormData({ ...formData, [name]: value });
 	};
@@ -22,7 +21,7 @@ export default function useRegister() {
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		register({ department_name, department_code })
+		register({ name: department_name, code: department_code })
 			.unwrap()
 			.then(() => {
 				toast.success('Operation successful!');
