@@ -93,8 +93,8 @@ const UniversityView = ({ university }: Props) => {
           <p>{university.domain}</p>
         </div>
         <div className="secondary">
-          <h4>{university.admin.username}</h4>
-          <p>{university.admin.id}</p>
+          <h4>{university?.admin?.username}</h4>
+          <p>{university?.admin?.id}</p>
         </div>
         <div className="action">
           <button

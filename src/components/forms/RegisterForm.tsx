@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRegister } from '@/hooks'
 import { Input, Select } from '@/components/forms'
 import { Spinner } from '@/components/common'
-import { PublicUniversity } from '@/types'
+import { University } from '@/types'
 import { useRetrievePublicUniversityQuery } from '@/redux/features/universityApiSlice'
 
 interface Option {
@@ -48,7 +48,7 @@ export default function RegisterForm() {
           label: 'Select a university',
           isEnabled: true,
         },
-        ...universityList.map((item: PublicUniversity) => ({
+        ...universityList.map((item: University) => ({
           value: item.id,
           label: item.name,
           isEnabled: true,
