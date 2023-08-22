@@ -28,7 +28,6 @@ export default function useRegister() {
 			if (response?.data?.id) {
 			  toast.success('Operation successful!');
 				addItem(response)
-				console.log(response)
 		  } else {
 			toast.error('Operation failed!');
 		  }
