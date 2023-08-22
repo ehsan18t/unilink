@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import { useRegisterDepartmentMutation } from '@/redux/features/departmentApiSlice';
 import { toast } from 'react-toastify';
 import { useSharedList } from '@/hooks'
-import { Department } from '@/types';
 
 export default function useRegister() {
 	const [register, { isLoading }] = useRegisterDepartmentMutation();
@@ -23,9 +22,9 @@ export default function useRegister() {
 
 	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-	  
+
 		try {
-			const response = await register({ name: department_name, code: department_code });
+			const response: any = await register({ name: department_name, code: department_code });
 			if (response?.data?.id) {
 			  toast.success('Operation successful!');
 				addItem(response)
