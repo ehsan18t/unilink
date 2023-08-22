@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import Button from '@/components/common/Button'
+import cn from 'classnames'
 
 interface ModalProps {
   text?: string
   title?: string
   center?: boolean
   children: React.ReactNode
+  sizeClass?: string
 }
 
 const Modal = ({
   text = 'Open',
   title,
   center = true,
+  sizeClass = 'w-1/2',
   children,
 }: ModalProps) => {
   const [isAnimating, setIsAnimating] = useState(false)
@@ -40,8 +43,13 @@ const Modal = ({
           isAnimating ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <div className="w-full fixed inset-0 bg-black opacity-50"></div>
-        <div className="bg-white rounded-lg p-6 shadow-md z-10 relative">
+        <div className="fixed inset-0 bg-black opacity-50"></div>
+        <div
+          className={cn(
+            'bg-white rounded-lg p-6 shadow-md z-10 relative',
+            sizeClass,
+          )}
+        >
           <button
             className="transition ease-in-out duration-300 absolute top-0 right-0 m-2 p-2 text-gray-600 hover:text-gray-800 hover:bg-slate-300 rounded-full"
             onClick={closeModal}
