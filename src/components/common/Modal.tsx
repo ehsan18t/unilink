@@ -8,6 +8,7 @@ interface ModalProps {
   center?: boolean
   children: React.ReactNode
   sizeClass?: string
+  buttonClass?: string
 }
 
 const Modal = ({
@@ -15,6 +16,7 @@ const Modal = ({
   title,
   center = true,
   sizeClass = 'w-1/2',
+  buttonClass = 'm-5',
   children,
 }: ModalProps) => {
   const [isAnimating, setIsAnimating] = useState(false)
@@ -33,8 +35,10 @@ const Modal = ({
   }
 
   return (
-    <div className="w-full flex justify-center items-center">
-      <Button onClick={openModal}>{text}</Button>
+    <div className="flex justify-center items-center">
+      <Button className={buttonClass} onClick={openModal}>
+        {text}
+      </Button>
 
       <div
         className={`fixed inset-0 z-50 ${
