@@ -55,7 +55,6 @@ const DepartmentList = () => {
         <div className="flex flex-col items-center">
           <Button
             onClick={(e: any) => {
-              console.log('clicked')
               onSubmit(e)
               updateModalState(false)
             }}

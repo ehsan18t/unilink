@@ -1,9 +1,12 @@
 import { useState, FormEvent } from 'react';
 import { useRegisterDepartmentMutation } from '@/redux/features/departmentApiSlice';
 import { toast } from 'react-toastify';
+import { useSharedList } from '@/hooks'
+import { Department } from '@/types';
 
 export default function useRegister() {
 	const [register, { isLoading }] = useRegisterDepartmentMutation();
+	const { addItem } = useSharedList()
 
 	const [formData, setFormData] = useState({
 		department_name: '',
@@ -18,18 +21,24 @@ export default function useRegister() {
 		setFormData({ ...formData, [name]: value });
 	};
 
-	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-
-		register({ name: department_name, code: department_code })
-			.unwrap()
-			.then(() => {
-				toast.success('Operation successful!');
-			})
-			.catch(() => {
-				toast.error('Operation failed!');
-			});
-	};
+	  
+		try {
+			const response = await register({ name: department_name, code: department_code });
+			if (response?.data?.id) {
+			  toast.success('Operation successful!');
+				addItem(response)
+				console.log(response)
+		  } else {
+			toast.error('Operation failed!');
+		  }
+		} catch (error) {
+		  toast.error('An error occurred!');
+		  console.error(error);
+		}
+	  };
+	  
 
 	return {
 		department_name,
