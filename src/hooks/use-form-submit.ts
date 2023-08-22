@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 async function performRegistration(registerFunction: any, data: any) {
     try {
         const response = await registerFunction(data);
-        if (response?.data?.id) {
+        if (response?.data?.id || response?.status == 200) {
             toast.success('Operation successful!');
             return response;
         } else {
