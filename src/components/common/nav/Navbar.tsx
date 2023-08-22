@@ -53,7 +53,7 @@ const Navbar = ({ children }: any) => {
           </button>
         </div>
         <div
-          className={`shadow-md fixed top-0 left-0 h-full w-64 bg-white text-gray-800 transform transition-transform ease-in-out ${
+          className={`z-[2000] shadow-md fixed top-0 left-0 h-full w-64 bg-white text-gray-800 transform transition-transform ease-in-out ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
