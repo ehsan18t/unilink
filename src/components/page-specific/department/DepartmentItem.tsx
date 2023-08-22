@@ -7,11 +7,13 @@ import { Department } from '@/types'
 import { useDeleteDepartmentMutation } from '@/redux/features/departmentApiSlice'
 
 interface Props {
-  department: Department
-  onDelete?: (department: Department) => void // Update onDelete prop to accept Department data
+  item: Department
+  onDelete?: (department: Department) => void
 }
 
-const DepartmentItem = ({ department, onDelete }: Props) => {
+const DepartmentItem = ({ item, onDelete }: Props) => {
+  const department = item
+
   const { deleteOnAction } = useMutation(
     useDeleteDepartmentMutation,
     { department_id: department.id },
