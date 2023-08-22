@@ -5,6 +5,13 @@ import { useRegister } from '@/hooks'
 import { Input, Select } from '@/components/forms'
 import { Spinner } from '@/components/common'
 import { PublicUniversity } from '@/types'
+import { useRetrievePublicUniversityQuery } from '@/redux/features/universityApiSlice'
+
+interface Option {
+  value: number
+  label: string
+  isEnabled: boolean
+}
 
 export default function RegisterForm() {
   const {
@@ -19,47 +26,37 @@ export default function RegisterForm() {
     onChange,
     onSubmit,
   } = useRegister()
-  // Initialize the options state with an empty array
-  const [options, setOptions] = useState([
+
+  // Initialize the options state with the initial value
+  const [options, setOptions] = useState<Option[]>([
     {
       value: 0,
       label: 'Select a university',
-      isEnabled: false,
+      isEnabled: true,
     },
   ])
 
   // Function to fetch data and update options
-  const fetchData = () => {
-    fetch(process.env.NEXT_PUBLIC_HOST + '/api/university/list/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const updatedOptions = [
-          {
-            value: 0,
-            label: 'Select a university',
-            isEnabled: true,
-          },
-          ...data.map((item: PublicUniversity) => {
-            return {
-              value: item.id,
-              label: item.name,
-              isEnabled: true,
-            }
-          }),
-        ]
-        setOptions(updatedOptions)
-      })
-  }
+  const { data: universityList, isFetching } =
+    useRetrievePublicUniversityQuery()
 
-  // Fetch data only on component mount
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (universityList) {
+      const updatedOptions = [
+        {
+          value: 0,
+          label: 'Select a university',
+          isEnabled: true,
+        },
+        ...universityList.map((item: PublicUniversity) => ({
+          value: item.id,
+          label: item.name,
+          isEnabled: true,
+        })),
+      ]
+      setOptions(updatedOptions)
+    }
+  }, [universityList])
 
   return (
     <form className="space-y-6" onSubmit={onSubmit}>
