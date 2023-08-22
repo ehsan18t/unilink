@@ -1,22 +1,19 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import List from '@mui/material/List'
+import { useSharedList } from '@/hooks'
 
 const ListContainer = ({ items, ItemComponent }: any) => {
   const [removedItem, setRemovedItem] = useState<any>()
-  const [itemList, setItemList] = useState<any[]>([])
+  const { itemList, removeItem, updateList } = useSharedList()
 
   useEffect(() => {
-    setItemList(items)
-  }, [items])
+    updateList(items)
+  }, [])
 
   useEffect(() => {
     if (removedItem) {
-      setItemList((prev) => {
-        return prev?.filter(
-          (item) => (item as any).id !== (removedItem as any).id,
-        )
-      })
+      removeItem(removedItem)
     }
   }, [removedItem])
 
@@ -25,7 +22,7 @@ const ListContainer = ({ items, ItemComponent }: any) => {
   }
 
   return (
-    <List dense={false}>
+    <div className="p-5">
       {itemList?.map((item: any) => (
         <ItemComponent
           key={(item as any).id}
@@ -33,7 +30,7 @@ const ListContainer = ({ items, ItemComponent }: any) => {
           onDelete={(deletedItem: any | null) => handleDelete(deletedItem)}
         />
       ))}
-    </List>
+    </div>
   )
 }
 
