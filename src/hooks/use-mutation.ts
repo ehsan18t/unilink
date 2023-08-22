@@ -11,8 +11,8 @@ export default function useMutation(
     try {
       const response = await action(params); // Use mutationFunction and params here
       //  if response not 200, throw error
-      if (response.status !== 200) {
-        throw new Error(response.status, response.statusText);
+      if (response.status !== 200 && response.data.status !== 'OK' && response.data.status !== 'success') {
+        throw new Error(response.error);
       }
       toast.success('Operation Successful!');
       return response;
