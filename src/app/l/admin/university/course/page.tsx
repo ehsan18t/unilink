@@ -22,6 +22,7 @@ interface Option {
 }
 
 const CourseList = () => {
+  const [selectedDepartment, setSelectedDepartment] = useState('0')
   const { data: courses, isLoading, isError } = useRetrieveCourseQuery()
   const { data: departments } = useRetrieveDepartmentQuery()
 
@@ -84,6 +85,10 @@ const CourseList = () => {
     register,
     initialFormData,
   )
+
+  useEffect(() => {
+    setSelectedDepartment(formData.department_id)
+  }, [formData])
 
   const { updateModalState } = useSharedModal()
 
@@ -148,7 +153,7 @@ const CourseList = () => {
           key="department"
           labelId="department_id"
           onChange={onChange}
-          value={formData.department}
+          value={selectedDepartment}
           required={true}
           options={options}
         >
