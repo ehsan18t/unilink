@@ -1,5 +1,4 @@
-'use client'
-import { ChangeEvent, useState, useEffect } from 'react'
+import { ChangeEvent } from 'react'
 import Link from 'next/link'
 
 interface Props {
@@ -24,12 +23,6 @@ export default function Select({
   link,
   required = false,
 }: Props) {
-  const [optionValue, setOptionValue] = useState(value)
-
-  useEffect(() => {
-    setOptionValue(value)
-  }, [value])
-
   return (
     <div>
       <div className="flex justify-between align-center">
@@ -56,7 +49,7 @@ export default function Select({
           className="block font-sans w-full p-3 rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           name={labelId}
           onChange={onChange}
-          value={optionValue}
+          value={value}
           required={required}
         >
           {options?.map((child: any) => {
