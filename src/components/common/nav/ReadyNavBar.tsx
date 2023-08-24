@@ -1,17 +1,32 @@
 'use client'
+import { useState, useRef } from 'react'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
-import { AiOutlineHome, AiOutlineShop } from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineLogout } from 'react-icons/ai'
 import { RiAdminLine } from 'react-icons/ri'
 import Navbar from '@/components/common/nav/Navbar'
 import { NavItem } from '@/components/common/nav/NavItem'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks'
+import { useLogoutMutation } from '@/redux/features/authApiSlice'
+import { logout as setLogout } from '@/redux/features/authSlice'
 
 const ReadyNavBar = () => {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
+
+  const dispatch = useAppDispatch()
+  const [logout] = useLogoutMutation()
+  const { isAuthenticated } = useAppSelector((state) => state.auth)
+
+  const handleLogout = () => {
+    logout(undefined)
+      .unwrap()
+      .then(() => {
+        dispatch(setLogout())
+      })
+  }
   return (
     <Navbar>
       <NavItem to="/" name="Home" icon={AiOutlineHome} />
-      <NavItem to="#" name="Shop" icon={AiOutlineShop} />
-      {user && user.user_type == 0 && (
+      {isAuthenticated && user?.user_type == 0 && (
         <>
           <NavItem
             to="/l/admin/site/dashboard"
@@ -29,6 +44,9 @@ const ReadyNavBar = () => {
             icon={RiAdminLine}
           />
         </>
+      )}
+      {isAuthenticated && (
+        <NavItem name="Logout" icon={AiOutlineLogout} onClick={handleLogout} />
       )}
     </Navbar>
   )

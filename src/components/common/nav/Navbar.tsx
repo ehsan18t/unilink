@@ -4,13 +4,13 @@ import { HiMenu } from 'react-icons/hi'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
 import Link from 'next/link'
 
-const Navbar = ({ children }) => {
-  const { data: user, isUserLoading, isFetching } = useRetrieveUserQuery()
+const Navbar = ({ children }: any) => {
+  const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
   const [isSidebarOpen, setSidebarOpen] = useState(false)
-  const hamburgerButtonRef = useRef(null)
+  const hamburgerButtonRef = useRef<any>(null)
 
   useEffect(() => {
-    const handleSidebarToggle = (e) => {
+    const handleSidebarToggle = (e: any) => {
       if (
         hamburgerButtonRef.current &&
         hamburgerButtonRef.current.contains(e.target)
@@ -41,7 +41,7 @@ const Navbar = ({ children }) => {
             className="text-gray-800 block"
             aria-label="Toggle sidebar"
           >
-            {!isUserLoading && !isFetching && user.profile_picture ? (
+            {!isLoading && !isFetching && user?.profile_picture ? (
               <img
                 src={user.profile_picture}
                 alt="User Profile"
@@ -53,7 +53,7 @@ const Navbar = ({ children }) => {
           </button>
         </div>
         <div
-          className={`shadow-md fixed top-0 left-0 h-full w-64 bg-white text-gray-800 transform transition-transform ease-in-out ${
+          className={`z-[2000] shadow-md fixed top-0 left-0 h-full w-64 bg-white text-gray-800 transform transition-transform ease-in-out ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >

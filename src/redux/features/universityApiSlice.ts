@@ -1,5 +1,5 @@
 import { apiSlice } from '../services/apiSlice';
-import { University, PublicUniversity } from '@/types';
+import { University } from '@/types';
 
 const returnObject = (endpoint: string, params: any) => {
 	return {
@@ -12,7 +12,7 @@ const returnObject = (endpoint: string, params: any) => {
 
 const universityApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
-		retrievePublicUniversity: builder.query<PublicUniversity[], void>({
+		retrievePublicUniversity: builder.query<University[], void>({
 			query: () => '/university/list/',
 		}),
 		retrievePendingUniversity: builder.query<University[], void>({
