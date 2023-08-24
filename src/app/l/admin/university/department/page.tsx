@@ -1,6 +1,9 @@
 'use client'
 
-import { useRetrieveDepartmentQuery } from '@/redux/features/departmentApiSlice'
+import {
+  useRetrieveDepartmentQuery,
+  useRealTimeDepartmentUpdates,
+} from '@/redux/features/departmentApiSlice'
 import DepartmentItem from '@/components/page-specific/department/DepartmentItem'
 import ListContainer from '@/components/common/ListContainer'
 import Modal from '@/components/common/Modal'
@@ -10,7 +13,7 @@ import { useSharedModal, useFormSubmit } from '@/hooks'
 import { useRegisterDepartmentMutation } from '@/redux/features/departmentApiSlice'
 
 const DepartmentList = () => {
-  const { data: departments, isLoading, isError } = useRetrieveDepartmentQuery()
+  const { departments, isLoading, isError } = useRealTimeDepartmentUpdates()
   const [register] = useRegisterDepartmentMutation()
 
   const initialFormData = {

@@ -1,6 +1,6 @@
 import { apiSlice } from '../services/apiSlice';
 import { Course } from '@/types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const returnObject = (endpoint: string, params: any) => {
 	return {
@@ -37,7 +37,6 @@ export const {
 export const useRealTimeCourseUpdates = () => {
 	const retrieveCourseQuery = useRetrieveCourseQuery();
 	const { data: courses, isLoading, isError } = retrieveCourseQuery;
-	const [isUpdated, setIsUpdated] = useState(false);
 
 	useEffect(() => {
 	  const pollInterval = setInterval(() => {
