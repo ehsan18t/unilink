@@ -42,6 +42,7 @@ export const {
 	useRetrieveSectionsQuery,
 	useRegisterSectionMutation,
 	useUpdateSectionMutation,
+	useAddFacultyToSectionMutation,
 	useDeleteSectionMutation,
 } = sectionApiSlice;
 
