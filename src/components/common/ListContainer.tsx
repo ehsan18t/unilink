@@ -9,7 +9,7 @@ const ListContainer = ({ items, ItemComponent }: any) => {
 
   useEffect(() => {
     updateList(items)
-  }, [])
+  }, [items])
 
   useEffect(() => {
     if (removedItem) {

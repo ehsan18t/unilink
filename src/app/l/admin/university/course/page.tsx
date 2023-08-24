@@ -10,7 +10,7 @@ import Button from '@/components/common/Button'
 import { useSharedModal, useFormSubmit } from '@/hooks'
 import {
   useRegisterCourseMutation,
-  useRetrieveCourseQuery,
+  useRealTimeCourseUpdates,
 } from '@/redux/features/courseApiSlice'
 import { useRetrieveDepartmentQuery } from '@/redux/features/departmentApiSlice'
 import { Department } from '@/types'
@@ -23,10 +23,9 @@ interface Option {
 
 const CourseList = () => {
   const [selectedDepartment, setSelectedDepartment] = useState('0')
-  const { data: courses, isLoading, isError } = useRetrieveCourseQuery()
+  const { courses, isLoading, isError } = useRealTimeCourseUpdates()
   const { data: departments } = useRetrieveDepartmentQuery()
 
-  // Initialize the options state with the initial value
   const [options, setOptions] = useState<Option[]>([
     {
       value: 0,
