@@ -3,21 +3,20 @@ import ListItemText from '@mui/material/ListItemText'
 import IconButton from '@mui/material/IconButton'
 import { AiFillDelete } from 'react-icons/ai'
 import { useMutation } from '@/hooks'
-import { Course } from '@/types'
-import { useDeleteCourseMutation } from '@/redux/features/courseApiSlice'
-import Link from 'next/link'
+import { Section } from '@/types'
+import { useDeleteSectionMutation } from '@/redux/features/sectionApiSlice'
 
 interface Props {
-  item: Course
-  onDelete?: (course: Course) => void
+  item: Section
+  onDelete?: (section: Section) => void
 }
 
-const CourseItem = ({ item, onDelete }: Props) => {
-  const course = item
+const SectionItem = ({ item, onDelete }: Props) => {
+  const section = item
 
   const { deleteOnAction } = useMutation(
-    useDeleteCourseMutation,
-    { course_id: course.id },
+    useDeleteSectionMutation,
+    { section_id: section.id },
     'delete',
   )
 
@@ -25,10 +24,10 @@ const CourseItem = ({ item, onDelete }: Props) => {
     try {
       const response = await deleteOnAction()
       if (onDelete && response.data?.status === 'success') {
-        onDelete(course)
+        onDelete(section)
       }
     } catch (error) {
-      console.error('Error deleting course:', error)
+      console.error('Error deleting section:', error)
     }
   }
 
@@ -40,16 +39,9 @@ const CourseItem = ({ item, onDelete }: Props) => {
         </IconButton>
       }
     >
-      <Link href={`course/${course.id}`}>
-        <ListItemText
-          primary={`[${course.code}] ${course.name}`}
-          secondary={`${course.type == 1 ? 'Theory' : 'Lab'} - ${
-            course.credit
-          }`}
-        />
-      </Link>
+      <ListItemText primary={section.name} secondary={section.trimester} />
     </ListItem>
   )
 }
 
-export default CourseItem
+export default SectionItem

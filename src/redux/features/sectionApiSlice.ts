@@ -13,10 +13,10 @@ const returnObject = (endpoint: string, params: any) => {
 const sectionApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		retrieveSections: builder.query<Section[], number>({
-            query: course_id => `/sections/?course_id=${course_id}`,
+            query: (course_id) => `/course/sections/?course_id=${course_id}`,
         }),
         retrieveSection: builder.query<Section[], number>({
-            query: section_id => `/section/?section_id=${section_id}`,
+            query: section_id => `/course/section/?section_id=${section_id}`,
         }),
 		registerSection: builder.mutation<Section, { name: string; trimester: string, course_id: number }>({
         query: ({ name, trimester, course_id }) => returnObject('create', { name, trimester, course_id }),
@@ -47,7 +47,7 @@ export const {
 } = sectionApiSlice;
 
 
-export const useRealTimeSectionUpdates = ({course_id}: any) => {
+export const useRealTimeSectionUpdates = (course_id: any) => {
 	const retrieveSectionsQuery = useRetrieveSectionsQuery(course_id);
 	const { data: sections, isLoading, isError } = retrieveSectionsQuery;
 
