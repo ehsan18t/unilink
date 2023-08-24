@@ -1,21 +1,26 @@
 'use client'
 
-import { useRealTimeDepartmentUpdates } from '@/redux/features/departmentApiSlice'
-import DepartmentItem from '@/components/page-specific/department/DepartmentItem'
+import { useRealTimeSectionUpdates } from '@/redux/features/sectionApiSlice'
+import SectionItem from '@/components/page-specific/section/SectionItem'
 import ListContainer from '@/components/common/ListContainer'
 import Modal from '@/components/common/Modal'
 import Input from '@/components/forms/Input'
 import Button from '@/components/common/Button'
 import { useSharedModal, useFormSubmit } from '@/hooks'
-import { useRegisterDepartmentMutation } from '@/redux/features/departmentApiSlice'
+import { useRegisterSectionMutation } from '@/redux/features/sectionApiSlice'
+import { useParams } from 'next/navigation'
 
-const DepartmentList = () => {
-  const { departments, isLoading, isError } = useRealTimeDepartmentUpdates()
-  const [register] = useRegisterDepartmentMutation()
+const SectionList = () => {
+  const params = useParams()
+  const course_id = params.courseId
+  console.log('course_id', course_id)
+  const { sections, isLoading, isError } = useRealTimeSectionUpdates(course_id)
+  const [register] = useRegisterSectionMutation()
 
   const initialFormData = {
     name: '',
-    code: '',
+    trimester: '',
+    course_id: course_id,
   }
 
   const { formData, onChange, onSubmit, updateFormData } = useFormSubmit(
@@ -38,11 +43,11 @@ const DepartmentList = () => {
       <Modal
         sizeClass="w-1/4"
         buttonClass="m-5"
-        text="Add Department"
-        title="Add Department"
+        text="Add Section"
+        title="Add Section"
       >
         <Input
-          key="department_name"
+          key="section_name"
           labelId="name"
           type="text"
           onChange={onChange}
@@ -50,17 +55,17 @@ const DepartmentList = () => {
           required={true}
           className="mb-5 w-full"
         >
-          Department Name
+          Section Name
         </Input>
         <Input
-          key="department_code"
-          labelId="code"
+          key="trimester"
+          labelId="trimester"
           type="text"
           onChange={onChange}
           value={formData.code}
           required={true}
         >
-          CodeName
+          Trimester/Semester Code
         </Input>
         <div className="flex flex-col items-center">
           <Button
@@ -73,15 +78,15 @@ const DepartmentList = () => {
             }}
             className="mt-5"
           >
-            Add Department
+            Add Section
           </Button>
         </div>
       </Modal>
       {!isLoading && (
-        <ListContainer items={departments} ItemComponent={DepartmentItem} />
+        <ListContainer items={sections} ItemComponent={SectionItem} />
       )}
     </div>
   )
 }
 
-export default DepartmentList
+export default SectionList

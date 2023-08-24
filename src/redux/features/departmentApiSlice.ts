@@ -1,5 +1,6 @@
 import { apiSlice } from '../services/apiSlice';
 import { Department } from '@/types';
+import { useEffect } from 'react';
 
 const returnObject = (endpoint: string, params: any) => {
 	return {
@@ -36,3 +37,19 @@ export const {
 	useRegisterDepartmentMutation,
 	useDeleteDepartmentMutation,
 } = departmentApiSlice;
+
+
+export const useRealTimeDepartmentUpdates = () => {
+	const retrieveDepartmentQuery = useRetrieveDepartmentQuery();
+	const { data: departments, isLoading, isError } = retrieveDepartmentQuery;
+
+	useEffect(() => {
+	  const pollInterval = setInterval(() => {
+		retrieveDepartmentQuery.refetch(); // Fetch updated course data
+	  }, 5000); // Poll every 5 seconds
+  
+	  return () => clearInterval(pollInterval); // Clear interval on component unmount
+	}, [retrieveDepartmentQuery]);
+  
+	return { departments, isLoading, isError };
+};
