@@ -14,10 +14,17 @@ export default function useMutation(
       if (response.status !== 200 && response.data.status !== 'OK' && response.data.status !== 'success') {
         throw new Error(response.error);
       }
-      toast.success('Operation Successful!');
+
+      // show info toast for 2 sec
+      toast.info('Processing...', { autoClose: 2000 });
+
+      // delay 2 sec
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      toast.success('Operation Successful!', { autoClose: 2000 });
       return response;
     } catch (error) {
-      toast.error('Operation Failed!');
+      toast.error('Operation Failed!', { autoClose: 2000 });
       throw error;
     }
   };
