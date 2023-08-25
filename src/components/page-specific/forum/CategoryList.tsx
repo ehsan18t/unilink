@@ -2,6 +2,7 @@
 
 import { ForumCategory } from '@/types'
 import { useRetrieveForumCategoryQuery } from '@/redux/features/forumApiSlice'
+import Link from 'next/link'
 
 const CategoryList = () => {
   const { data: list, isLoading, isError } = useRetrieveForumCategoryQuery()
@@ -19,13 +20,13 @@ const CategoryList = () => {
       <h2 className="text-xl font-semibold mb-4">Forum Category</h2>
       <div className="space-y-2">
         {list?.map((category) => (
-          <a
+          <Link
             key={category.id}
             href="#"
             className="no-underline flex text-lg text-gray-700 items-center space-x-2 p-2 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
           >
             {category.title}
-          </a>
+          </Link>
         ))}
       </div>
     </div>
