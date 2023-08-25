@@ -9,7 +9,7 @@ import CategoryList from '@/components/page-specific/forum/CategoryList'
 import Button from '@/components/common/Button'
 import { ForumPost } from '@/types'
 
-const SectionList = () => {
+const ForumView = () => {
   const params = useParams()
   const forum_id = params.forumId
   const [searchValue, setSearchValue] = useState('')
@@ -76,4 +76,4 @@ const SectionList = () => {
   )
 }
 
-export default SectionList
+export default ForumView
