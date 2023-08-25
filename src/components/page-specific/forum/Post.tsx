@@ -6,12 +6,15 @@ import React from 'react'
 import { BiCommentDetail, BiUpvote } from 'react-icons/bi'
 import { useRetrieveUserByIdQuery } from '@/redux/features/authApiSlice'
 import { useRetrieveForumQuery } from '@/redux/features/forumApiSlice'
+import cn from 'classnames'
 
 interface Props {
   post: ForumPost
+  className?: string
+  bigTitle?: boolean
 }
 
-const Post = ({ post }: Props) => {
+const Post = ({ post, className, bigTitle }: Props) => {
   const host = process.env.NEXT_PUBLIC_HOST
   const [user, setUser] = useState<User>()
   const [forum, setForum] = useState<Forum>()
@@ -41,8 +44,16 @@ const Post = ({ post }: Props) => {
   if (isError && isForumError) return <div>Something went wrong...</div>
 
   return (
-    <div className="w-full flex flex-col gap-3 h-64 bg-gray-100 shadow-md rounded-2xl p-4 px-5">
+    <div
+      className={cn(
+        'w-full flex flex-col gap-3 h-64 bg-gray-100 shadow-md rounded-2xl p-4 px-5',
+        className,
+      )}
+    >
       {/* <!-- Head Section --> */}
+      <div className="text-2xl p-4 m-3 font-semibold border-b-2">
+        {post.title}
+      </div>
       <div className="flex">
         <div className="flex-shrink-0">
           <img
@@ -65,7 +76,9 @@ const Post = ({ post }: Props) => {
       <div className="h-full flex flex-col justify-between ">
         {/* <!-- Body Section --> */}
         <div>
-          <div className="text-lg font-semibold">{post.title}</div>
+          {!bigTitle && (
+            <div className="text-lg font-semibold">{post.title}</div>
+          )}
           <div className="mt-2">{post.content}</div>
         </div>
         {/* <!-- Footer Section (comment, upvote count) --> */}
