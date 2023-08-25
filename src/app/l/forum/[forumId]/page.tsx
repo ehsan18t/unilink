@@ -6,7 +6,6 @@ import { useRetrieveForumPostQuery } from '@/redux/features/forumApiSlice'
 import ForumList from '@/components/page-specific/forum/ForumList'
 import Post from '@/components/page-specific/forum/Post'
 import CategoryList from '@/components/page-specific/forum/CategoryList'
-import { BsSearch } from 'react-icons/bs'
 import Button from '@/components/common/Button'
 import { ForumPost } from '@/types'
 
@@ -57,7 +56,7 @@ const SectionList = () => {
               className="border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
-          <Button>Create Post </Button>
+          <Button> Create Post </Button>
         </div>
 
         <div className="h-full flex flex-col gap-5 overflow-y-scroll scrollbar-hide">
