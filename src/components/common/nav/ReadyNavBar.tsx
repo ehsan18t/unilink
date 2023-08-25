@@ -1,5 +1,4 @@
 'use client'
-import { useState, useRef } from 'react'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
 import { AiOutlineHome, AiOutlineLogout } from 'react-icons/ai'
 import { RiAdminLine } from 'react-icons/ri'
@@ -8,6 +7,7 @@ import { NavItem } from '@/components/common/nav/NavItem'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { useLogoutMutation } from '@/redux/features/authApiSlice'
 import { logout as setLogout } from '@/redux/features/authSlice'
+import { UserType } from '@/enums'
 
 const ReadyNavBar = () => {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
@@ -26,7 +26,7 @@ const ReadyNavBar = () => {
   return (
     <Navbar>
       <NavItem to="/" name="Home" icon={AiOutlineHome} />
-      {isAuthenticated && user?.user_type == 0 && (
+      {isAuthenticated && user?.user_type == UserType.SITE_ADMIN && (
         <>
           <NavItem
             to="/l/admin/site/dashboard"
@@ -41,6 +41,25 @@ const ReadyNavBar = () => {
           <NavItem
             to="/l/admin/site/approved-university"
             name="Approved University"
+            icon={RiAdminLine}
+          />
+        </>
+      )}
+      {isAuthenticated && user?.user_type == UserType.UNIVERSITY_ADMIN && (
+        <>
+          <NavItem
+            to="/l/admin/university/dashboard"
+            name="Admin Dashboard"
+            icon={RiAdminLine}
+          />
+          <NavItem
+            to="/l/admin/university/course"
+            name="Course Management"
+            icon={RiAdminLine}
+          />
+          <NavItem
+            to="/l/admin/university/department"
+            name="Dept. Management"
             icon={RiAdminLine}
           />
         </>
