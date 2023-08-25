@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
 import Link from 'next/link'
+import Logo from '@/public/logo.png'
 
 const Navbar = ({ children }: any) => {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
@@ -32,6 +33,7 @@ const Navbar = ({ children }: any) => {
     <nav className="bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <div className="flex items-center text-gray-600 font-semibold text-3xl font-sans">
+          <img className="h-16 w-20" src="/logo.png" alt="" />
           <Link href="/">UniLink</Link>
         </div>
         <div className="flex gap-3 items-center">

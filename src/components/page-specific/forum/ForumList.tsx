@@ -3,7 +3,7 @@
 import { useRetrieveForumListQuery } from '@/redux/features/forumApiSlice'
 import Link from 'next/link'
 
-const CategoryList = () => {
+const ForumList = () => {
   const { data: list, isLoading, isError } = useRetrieveForumListQuery()
 
   if (isLoading) {
@@ -18,13 +18,13 @@ const CategoryList = () => {
     <div className="w-full h-full bg-white border-r border-gray-300 p-4 rounded">
       <h2 className="text-xl font-semibold mb-4">Forum List</h2>
       <div className="space-y-2">
-        {list?.map((category) => (
+        {list?.map((forum) => (
           <Link
-            key={category.id}
-            href="#"
+            key={forum.id}
+            href={`forum/${forum.id}`}
             className="no-underline flex text-lg text-gray-700 items-center space-x-2 p-2 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
           >
-            {category.title}
+            {forum.title}
           </Link>
         ))}
       </div>
@@ -32,4 +32,4 @@ const CategoryList = () => {
   )
 }
 
-export default CategoryList
+export default ForumList
