@@ -35,6 +35,11 @@ const sectionApiSlice = apiSlice.injectEndpoints({
 				returnObject('delete', { section_id })
 			)
 		}),
+		removeUser: builder.mutation({
+			query: ({ section_id, user_id }) => (
+				returnObject('remove-user', { section_id, user_id })
+			)
+		}),
 	}),
 });
 
@@ -45,6 +50,7 @@ export const {
 	useUpdateSectionMutation,
 	useAddFacultyToSectionMutation,
 	useDeleteSectionMutation,
+	useRemoveUserMutation,
 } = sectionApiSlice;
 
 

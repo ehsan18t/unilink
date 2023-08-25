@@ -1,0 +1,53 @@
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import IconButton from '@mui/material/IconButton'
+import { AiFillDelete } from 'react-icons/ai'
+import { useMutation } from '@/hooks'
+import { Section } from '@/types'
+import {
+  useDeleteSectionMutation,
+  useRemoveUserMutation,
+} from '@/redux/features/sectionApiSlice'
+import Link from 'next/link'
+
+interface Props {
+  item: Section
+  onDelete?: (section: Section) => void
+}
+
+const SectionItem = ({ item, onDelete }: Props) => {
+  const section = item
+
+  const { deleteOnAction } = useMutation(
+    useRemoveUserMutation,
+    { section_id: section.id, user_id: item.id },
+    'delete',
+  )
+
+  const handleDelete = async () => {
+    try {
+      const response = await deleteOnAction()
+      if (onDelete && response.data?.status === 'success') {
+        onDelete(section)
+      }
+    } catch (error) {
+      console.error('Error deleting section:', error)
+    }
+  }
+
+  return (
+    <ListItem
+      secondaryAction={
+        <IconButton edge="end" aria-label="delete" onClick={handleDelete}>
+          <AiFillDelete className="text-red-400 hover:text-red-500" />
+        </IconButton>
+      }
+    >
+      <Link href={`${section.course}/${section.id}`}>
+        <ListItemText primary={section.name} secondary={section.trimester} />
+      </Link>
+    </ListItem>
+  )
+}
+
+export default SectionItem
