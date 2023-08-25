@@ -33,6 +33,7 @@ const forumApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+	useRetrieveForumCategoryQuery,
 	useRetrieveForumListQuery,
 	useRegisterForumMutation,
 	useDeleteForumMutation,
