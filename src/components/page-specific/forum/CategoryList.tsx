@@ -1,17 +1,24 @@
-import React from 'react'
+'use client'
+
 import { ForumCategory } from '@/types'
-import { Link } from '@mui/material'
+import { useRetrieveForumCategoryQuery } from '@/redux/features/forumApiSlice'
 
-interface Props {
-  list: ForumCategory[]
-}
+const CategoryList = () => {
+  const { data: list, isLoading, isError } = useRetrieveForumCategoryQuery()
 
-const CategoryList = ({ list }: Props) => {
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error</div>
+  }
+
   return (
     <div className="w-1/4 bg-white border-r border-gray-300 p-4">
       <h2 className="text-xl font-semibold mb-4">Forum Category</h2>
       <div className="space-y-2">
-        {list.map((category) => (
+        {list?.map((category) => (
           <a
             key={category.id}
             href="#"

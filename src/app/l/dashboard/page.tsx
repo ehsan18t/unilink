@@ -3,21 +3,6 @@ import CategoryList from '@/components/page-specific/forum/CategoryList'
 import Post from '@/components/page-specific/forum/Post'
 
 const Dashboard = () => {
-  const forumCategory = [
-    {
-      id: 1,
-      title: 'General Discussion',
-    },
-    {
-      id: 2,
-      title: 'Announcements',
-    },
-    {
-      id: 3,
-      title: 'Q&A',
-    },
-  ]
-
   const forumPost = [
     {
       id: 1,
@@ -69,7 +54,7 @@ const Dashboard = () => {
   return (
     <div className="flex h-screen border-t-[1px] border-gray-200">
       {/* <!-- Category List (Left Pane) --> */}
-      <CategoryList list={forumCategory} />
+      <CategoryList />
 
       {/* <!-- Posts (Middle Pane) --> */}
       <div className="w-1/2 bg-white border-r border-gray-100 p-4">
