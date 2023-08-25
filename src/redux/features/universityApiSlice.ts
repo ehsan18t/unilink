@@ -1,5 +1,5 @@
 import { apiSlice } from '../services/apiSlice';
-import { University } from '@/types';
+import { University, User } from '@/types';
 
 const returnObject = (endpoint: string, params: any) => {
 	return {
@@ -21,6 +21,9 @@ const universityApiSlice = apiSlice.injectEndpoints({
 		retrieveApprovedUniversity: builder.query<University[], void>({
 			query: () => '/university/approved/',
 		}),
+        retrieveFacultyList: builder.query<User[], void>({
+            query: () => '/university/faculty-list/',
+        }),
 		registerUniversity: builder.mutation({
 			query: ({ name, domain, admin: { first_name, last_name, username, email } }) => (
 				returnObject('create', { name, domain, admin: { first_name, last_name, username, email } })
@@ -45,6 +48,7 @@ export const {
 	useRetrievePublicUniversityQuery,
 	useRetrievePendingUniversityQuery,
 	useRetrieveApprovedUniversityQuery,
+	useRetrieveFacultyListQuery,
 	useRegisterUniversityMutation,
 	useApproveMutation,
 	useDisapproveMutation,
