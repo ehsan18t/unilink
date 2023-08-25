@@ -1,5 +1,5 @@
 import { apiSlice } from '../services/apiSlice';
-import { ForumCategory, Forum, ForumPost } from '@/types';
+import { ForumCategory, Forum, ForumPost, Comment } from '@/types';
 
 const returnObject = (endpoint: string, params: any) => {
 	return {
@@ -26,6 +26,12 @@ const forumApiSlice = apiSlice.injectEndpoints({
 		retrieveAllForumPost: builder.query<ForumPost[], void>({
 			query: () => '/forum/forum-posts-for-user/',
 		}),
+		retrievePostById: builder.query<ForumPost, number>({
+			query: (post_id) => `/forum/post-by-id/?post_id=${post_id}`,
+		}),
+		retrievePostComments: builder.query<Comment[], number>({
+			query: (post_id) => `/forum/forum-post-comment-list/?post_id=${post_id}`,
+		}),
 		registerForum: builder.mutation<Forum, { name: string; code: string }>({
 		  query: ({ name, code }) => returnObject('create', { name, code }),
 		  transformResponse: (response: any) => response,
@@ -44,6 +50,8 @@ export const {
 	useRetrieveForumQuery,
 	useRetrieveForumPostQuery,
 	useRetrieveAllForumPostQuery,
+	useRetrievePostByIdQuery,
+	useRetrievePostCommentsQuery,
 	useRegisterForumMutation,
 	useDeleteForumMutation,
 } = forumApiSlice;
