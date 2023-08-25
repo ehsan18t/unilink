@@ -25,7 +25,7 @@ export interface ForumPost {
     readonly id: number;
     title: string;
     content: string;
-    author: User;
+    author: number;
     forum: number;
     created_at: Date;
     updated_at: Date;

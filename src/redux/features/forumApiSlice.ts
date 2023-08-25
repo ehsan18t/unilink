@@ -17,8 +17,14 @@ const forumApiSlice = apiSlice.injectEndpoints({
 		retrieveForumList: builder.query<Forum[], void>({
 			query: () => '/forum/forum-list/',
 		}),
+		retrieveForum: builder.query<Forum, number>({
+			query: (forum_id) => `/forum/?forum_id=${forum_id}`,
+		}),
 		retrieveForumPost: builder.query<ForumPost[], number>({
 			query: (forum_id) => `/forum/forum-post-list/?forum_id=${forum_id}`,
+		}),
+		retrieveAllForumPost: builder.query<ForumPost[], void>({
+			query: () => '/forum/forum-posts-for-user/',
 		}),
 		registerForum: builder.mutation<Forum, { name: string; code: string }>({
 		  query: ({ name, code }) => returnObject('create', { name, code }),
@@ -35,6 +41,9 @@ const forumApiSlice = apiSlice.injectEndpoints({
 export const {
 	useRetrieveForumCategoryQuery,
 	useRetrieveForumListQuery,
+	useRetrieveForumQuery,
+	useRetrieveForumPostQuery,
+	useRetrieveAllForumPostQuery,
 	useRegisterForumMutation,
 	useDeleteForumMutation,
 } = forumApiSlice;

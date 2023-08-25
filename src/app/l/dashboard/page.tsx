@@ -1,55 +1,12 @@
+'use client'
+
 import React from 'react'
 import CategoryList from '@/components/page-specific/forum/CategoryList'
 import Post from '@/components/page-specific/forum/Post'
+import { useRetrieveAllForumPostQuery } from '@/redux/features/forumApiSlice'
 
 const Dashboard = () => {
-  const forumPost = [
-    {
-      id: 1,
-      title: 'How to use React',
-      user: {
-        id: 1,
-        name: 'John Doe',
-        profile_picture: 'https://i.pravatar.cc/50',
-      },
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptates.',
-      category: 'General Discussion',
-      created_at: '2021-10-10',
-      comments: 10,
-      votes: 20,
-    },
-    {
-      id: 2,
-      title: 'How to use React 2',
-      user: {
-        id: 1,
-        name: 'John Doe',
-        profile_picture: 'https://i.pravatar.cc/50',
-      },
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptates.',
-      category: 'General Discussion',
-      created_at: '2021-10-10',
-      comments: 10,
-      votes: 20,
-    },
-    {
-      id: 3,
-      title: 'How to use React 3',
-      user: {
-        id: 1,
-        name: 'John Doe',
-        profile_picture: 'https://i.pravatar.cc/50',
-      },
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptates.',
-      category: 'General Discussion',
-      created_at: '2021-10-10',
-      comments: 10,
-      votes: 20,
-    },
-  ]
+  const { data: forumPosts, isLoading } = useRetrieveAllForumPostQuery()
 
   return (
     <div className="flex h-screen border-t-[1px] border-gray-200">
@@ -60,7 +17,7 @@ const Dashboard = () => {
       <div className="w-1/2 bg-white border-r border-gray-100 p-4">
         <div className="h-full flex flex-col gap-5 overflow-y-scroll scrollbar-hide">
           {/* <!-- Post Messages Here --> */}
-          {forumPost.map((post) => (
+          {forumPosts?.map((post) => (
             <Post key={post.id} post={post} />
           ))}
           {/* <!-- Post Messages Here --> */}
