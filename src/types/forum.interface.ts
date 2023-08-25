@@ -31,3 +31,13 @@ export interface ForumPost {
     updated_at: Date;
     is_active: boolean;
 }
+
+export interface Comment {
+    readonly id: number;
+    author: number;
+    content: string;
+    forum_post: number;
+    created_at: Date;
+    updated_at: Date;
+    is_active: boolean;
+}
