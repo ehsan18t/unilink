@@ -3,8 +3,8 @@
  - [API Tests (PostMan)](https://elements.getpostman.com/redirect?entityId=28446015-f0c7ad26-98e7-47f2-8120-82692c8865e5&entityType=collection)
 
 # TODO
- - [ ] Add Section Control
- - [ ] Add Option to Add Faculty to Section
+ - [x] Add Section Control
+ - [x] Add Option to Add Faculty to Section
  - [ ] Add Chat
  - [ ] Add Notification
  - [ ] Add Forum
