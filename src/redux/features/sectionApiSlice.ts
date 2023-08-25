@@ -26,8 +26,8 @@ const sectionApiSlice = apiSlice.injectEndpoints({
         query: ({ name, trimester, course_id }) => returnObject('update', { name, trimester, course_id }),
             transformResponse: (response: any) => response,
 		}),
-		addFacultyToSection: builder.mutation<Section, { course_id: number, faculty_id: number }>({
-        query: ({ course_id, faculty_id }) => returnObject('add-faculty', { course_id, faculty_id }),
+		addFacultyToSection: builder.mutation<Section, { section_id: number, faculty_id: number }>({
+        query: ({ section_id, faculty_id }) => returnObject('add-faculty', { section_id, faculty_id }),
             transformResponse: (response: any) => response,
 		}),
 		deleteSection: builder.mutation({
@@ -40,6 +40,7 @@ const sectionApiSlice = apiSlice.injectEndpoints({
 
 export const {
 	useRetrieveSectionsQuery,
+	useRetrieveSectionQuery,
 	useRegisterSectionMutation,
 	useUpdateSectionMutation,
 	useAddFacultyToSectionMutation,
