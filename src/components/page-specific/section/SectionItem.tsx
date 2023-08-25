@@ -5,6 +5,7 @@ import { AiFillDelete } from 'react-icons/ai'
 import { useMutation } from '@/hooks'
 import { Section } from '@/types'
 import { useDeleteSectionMutation } from '@/redux/features/sectionApiSlice'
+import Link from 'next/link'
 
 interface Props {
   item: Section
@@ -39,7 +40,9 @@ const SectionItem = ({ item, onDelete }: Props) => {
         </IconButton>
       }
     >
-      <ListItemText primary={section.name} secondary={section.trimester} />
+      <Link href={`${section.course}/${section.id}`}>
+        <ListItemText primary={section.name} secondary={section.trimester} />
+      </Link>
     </ListItem>
   )
 }
