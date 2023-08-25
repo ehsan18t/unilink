@@ -7,6 +7,7 @@ import { BiCommentDetail, BiUpvote } from 'react-icons/bi'
 import { useRetrieveUserByIdQuery } from '@/redux/features/authApiSlice'
 import { useRetrieveForumQuery } from '@/redux/features/forumApiSlice'
 import cn from 'classnames'
+import Link from 'next/link'
 
 interface Props {
   post: ForumPost
@@ -46,14 +47,18 @@ const Post = ({ post, className, bigTitle }: Props) => {
   return (
     <div
       className={cn(
-        'w-full flex flex-col gap-3 h-64 bg-gray-100 shadow-md rounded-2xl p-4 px-5',
+        `${
+          bigTitle ? '' : 'h-64'
+        } w-full flex flex-col gap-3 bg-gray-100 shadow-md rounded-2xl p-4 px-5`,
         className,
       )}
     >
       {/* <!-- Head Section --> */}
-      <div className="text-2xl p-4 m-3 font-semibold border-b-2">
-        {post.title}
-      </div>
+      {bigTitle && (
+        <div className="text-2xl p-4 m-3 font-semibold border-b-2">
+          {post.title}
+        </div>
+      )}
       <div className="flex">
         <div className="flex-shrink-0">
           <img
@@ -77,10 +82,13 @@ const Post = ({ post, className, bigTitle }: Props) => {
         {/* <!-- Body Section --> */}
         <div>
           {!bigTitle && (
-            <div className="text-lg font-semibold">{post.title}</div>
+            <Link href={`/l/forum/${forum?.id}/${post.id}`}>
+              <div className="text-lg font-semibold">{post.title}</div>
+            </Link>
           )}
-          <div className="mt-2">{post.content}</div>
+          <div className={`mt-2 ${bigTitle ? 'px-6' : ''}`}>{post.content}</div>
         </div>
+        {bigTitle && <div className="border-b-2 p-2 m-4"></div>}
         {/* <!-- Footer Section (comment, upvote count) --> */}
         <div className="flex justify-between text-gray-500">
           <div className="flex gap-1 justify-center items-center">
