@@ -3,6 +3,7 @@
 import React from 'react'
 import CategoryList from '@/components/page-specific/forum/CategoryList'
 import Post from '@/components/page-specific/forum/Post'
+import ForumList from '@/components/page-specific/forum/ForumList'
 import { useRetrieveAllForumPostQuery } from '@/redux/features/forumApiSlice'
 
 const Dashboard = () => {
@@ -25,9 +26,8 @@ const Dashboard = () => {
       </div>
 
       {/* <!-- Space for Something on Right (Right Pane) --> */}
-      <div className="w-1/4 bg-gray-200 p-4">
-        <h2 className="text-xl font-semibold mb-4">Something on the Right</h2>
-        {/* <!-- Add content for something on the right here --> */}
+      <div className="w-1/4 bg-gray-200 p-1">
+        <ForumList />
       </div>
     </div>
   )
