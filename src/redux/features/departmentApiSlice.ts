@@ -19,7 +19,7 @@ const departmentApiSlice = apiSlice.injectEndpoints({
 			query: () => '/department/list/',
 		}),
 		retrieveDepartmentByUniversity: builder.query<Department[], number>({
-			query: (university_id) => `/department/get/?university_id=${university_id}/`,
+			query: (university_id) => `/department/get/?university_id=${university_id}`,
 		}),
 		registerDepartment: builder.mutation<Department, { name: string; code: string }>({
 		  query: ({ name, code }) => returnObject('create', { name, code }),

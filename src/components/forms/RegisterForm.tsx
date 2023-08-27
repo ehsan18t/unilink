@@ -6,6 +6,7 @@ import { Input, Select } from '@/components/forms'
 import { Spinner } from '@/components/common'
 import { University } from '@/types'
 import { useRetrievePublicUniversityQuery } from '@/redux/features/universityApiSlice'
+import SelectForRegister from './SelectForRegister'
 
 interface Option {
   value: number
@@ -14,6 +15,7 @@ interface Option {
 }
 
 export default function RegisterForm() {
+  const [selectedUniversity, setSelectedUniversity] = useState(0)
   const {
     first_name,
     last_name,
@@ -93,13 +95,22 @@ export default function RegisterForm() {
       <Select
         key="university"
         labelId="university"
-        onChange={onChange}
+        onChange={(e) => {
+          onChange(e)
+          setSelectedUniversity(Number(e.target.value))
+        }}
         value={university}
         required={true}
         options={options}
       >
         University
       </Select>
+      <SelectForRegister
+        key="department"
+        university_id={university}
+        onChange={onChange}
+        value={university}
+      />
       <Input
         key="email"
         labelId="email"
