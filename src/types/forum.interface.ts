@@ -30,6 +30,8 @@ export interface ForumPost {
     created_at: Date;
     updated_at: Date;
     is_active: boolean;
+    upvote_count?: number;
+    comment_count?: number;
 }
 
 export interface Comment {

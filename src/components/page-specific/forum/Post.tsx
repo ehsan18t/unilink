@@ -92,11 +92,10 @@ const Post = ({ post, className, bigTitle }: Props) => {
         {/* <!-- Footer Section (comment, upvote count) --> */}
         <div className="flex justify-between text-gray-500">
           <div className="flex gap-1 justify-center items-center">
-            <BiUpvote /> 5{/* {post.votes} */}
+            <BiUpvote /> {post.upvote_count}
           </div>
           <div className="flex gap-1 justify-center items-center">
-            <BiCommentDetail /> 10
-            {/* {post.comments} */}
+            <BiCommentDetail /> {post.comment_count}
           </div>
         </div>
       </div>
