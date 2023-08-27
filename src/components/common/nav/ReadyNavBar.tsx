@@ -9,6 +9,7 @@ import { useLogoutMutation } from '@/redux/features/authApiSlice'
 import { logout as setLogout } from '@/redux/features/authSlice'
 import { UserType } from '@/enums'
 import { FiUser } from 'react-icons/fi'
+import { AiOutlineUserAdd } from 'react-icons/ai'
 
 const ReadyNavBar = () => {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
@@ -68,7 +69,14 @@ const ReadyNavBar = () => {
       {isAuthenticated ? (
         <NavItem name="Logout" icon={AiOutlineLogout} onClick={handleLogout} />
       ) : (
-        <NavItem name="Login" icon={FiUser} onClick={handleLogout} />
+        <>
+          <NavItem name="Login" icon={FiUser} to="/nl/auth/login" />
+          <NavItem
+            name="Registration"
+            icon={AiOutlineUserAdd}
+            to="/nl/auth/register"
+          />
+        </>
       )}
     </Navbar>
   )
