@@ -29,6 +29,15 @@ export default function Page() {
             Login here
           </Link>
         </p>
+        <p className="mt-10 text-center text-sm text-gray-500">
+          Want to register your university?{' '}
+          <Link
+            href="/nl/auth/register/university"
+            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+          >
+            Register here
+          </Link>
+        </p>
       </div>
     </div>
   )
