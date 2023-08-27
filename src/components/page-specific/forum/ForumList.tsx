@@ -22,9 +22,12 @@ const ForumList = () => {
           <Link
             key={forum.id}
             href={`forum/${forum.id}`}
-            className="no-underline flex text-lg text-gray-700 items-center space-x-2 p-2 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
+            className="no-underline flex flex-col items-start space-x-2 p-2 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
           >
-            {forum.title}
+            <div className="text-lg text-gray-700 p-1">{forum.title}</div>
+            <div className="text-sm text-gray-500 text-justify py-1">
+              {forum.description}
+            </div>
           </Link>
         ))}
       </div>
