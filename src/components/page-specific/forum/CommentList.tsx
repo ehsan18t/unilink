@@ -22,11 +22,11 @@ const CommentList = ({ post_id }: any) => {
   }
 
   return (
-    <div className="w-full h-full bg-gray-100 border-r border-gray-300 p-4 rounded">
-      <h2 className="text-xl font-semibold mb-4 flex justify-center">
+    <div className="w-full h-full bg-gray-100 border-gray-300 p-4">
+      <h2 className="text-xl mx-4 font-semibold mb-4 flex justify-center">
         Comments
       </h2>
-      <div className="space-y-4 mx-16">
+      <div className="space-y-4 ">
         {list?.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}

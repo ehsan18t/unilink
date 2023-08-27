@@ -24,7 +24,7 @@ const PostView = () => {
   }
 
   return (
-    <div className="flex flex-col bg-gray-100 items-center h-screen w-full border-t-[1px] border-gray-200">
+    <div className="flex flex-col px-12 bg-gray-100 items-center h-screen w-full border-t-[1px] border-gray-200">
       {post && (
         <Post className="w-11/12 m-10 bg-white" post={post} bigTitle={true} />
       )}
