@@ -25,8 +25,8 @@ const universityApiSlice = apiSlice.injectEndpoints({
             query: () => '/university/faculty-list/',
         }),
 		registerUniversity: builder.mutation({
-			query: ({ name, domain, admin: { first_name, last_name, username, email } }) => (
-				returnObject('create', { name, domain, admin: { first_name, last_name, username, email } })
+			query: ({ name, domain, doc_url, admin: { first_name, last_name, username, email } }) => (
+				returnObject('create', { name, domain, doc_url, admin: { first_name, last_name, username, email } })
 			)
 		}),
 		approve: builder.mutation({

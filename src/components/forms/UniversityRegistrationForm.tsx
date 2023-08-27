@@ -7,6 +7,7 @@ export default function UniversityRegistrationForm() {
   const {
     name,
     domain,
+    doc_url,
     first_name,
     last_name,
     username,
@@ -37,6 +38,17 @@ export default function UniversityRegistrationForm() {
         required={true}
       >
         Domain
+      </Input>
+      <Input
+        key="doc_url"
+        labelId="doc_url"
+        type="text"
+        onChange={onChange}
+        value={doc_url}
+        required={true}
+        subTitle="(Provide link of necessary verification documents in zip format)"
+      >
+        Doc URL
       </Input>
       <Input
         key="first_name"

@@ -14,6 +14,7 @@ interface Props {
   }
   required?: boolean
   className?: string
+  subTitle?: string
 }
 
 export default function Input({
@@ -25,6 +26,7 @@ export default function Input({
   link,
   required = false,
   className,
+  subTitle,
 }: Props) {
   return (
     <div>
@@ -34,6 +36,9 @@ export default function Input({
           className="block text-sm font-medium leading-6 text-gray-900"
         >
           {children}
+          {subTitle && (
+            <span className="text-sm text-gray-500"> {subTitle} </span>
+          )}
         </label>
         {link && (
           <div className="text-sm">

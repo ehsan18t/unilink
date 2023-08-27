@@ -11,13 +11,14 @@ export default function useUniversityRegister() {
 	const [formData, setFormData] = useState({
         name: '',
         domain: '',
+        doc_url: '',
         first_name: '',
         last_name: '',
         username: '',
         email: '',
       });
 
-	const { name, domain, first_name, last_name, username, email} = formData;
+	const { name, domain,doc_url, first_name, last_name, username, email} = formData;
 
 	const onChange = (event: any) => {
 		const { name, value } = event.target;
@@ -28,7 +29,7 @@ export default function useUniversityRegister() {
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		register({ name, domain, admin: {first_name, last_name, username, email}})
+		register({ name, domain, doc_url, admin: {first_name, last_name, username, email}})
 			.unwrap()
 			.then(() => {
 				toast.success('Please wait until your university is approved');
@@ -40,7 +41,7 @@ export default function useUniversityRegister() {
 	};
 
     return {
-        name, domain, first_name, last_name, username, email,
+        name, domain, doc_url, first_name, last_name, username, email,
 		isLoading,
 		onChange,
 		onSubmit,
