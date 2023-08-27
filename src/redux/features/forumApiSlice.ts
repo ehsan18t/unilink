@@ -32,8 +32,8 @@ const forumApiSlice = apiSlice.injectEndpoints({
 		retrievePostComments: builder.query<Comment[], number>({
 			query: (post_id) => `/forum/forum-post-comment-list/?post_id=${post_id}`,
 		}),
-		registerForum: builder.mutation<Forum, { name: string; code: string }>({
-		  query: ({ name, code }) => returnObject('create', { name, code }),
+		registerForum: builder.mutation<Forum, { title: string, description: string, category_id: number}>({
+		  query: ({ title, description,category_id }) => returnObject('create', { title, description, category_id }),
 		  transformResponse: (response: any) => response,
 		}),
 		deleteForum: builder.mutation({
