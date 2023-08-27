@@ -32,9 +32,15 @@ const Navbar = ({ children }: any) => {
   return (
     <nav className="bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
-        <div className="flex items-center text-gray-600 font-semibold text-3xl font-sans">
-          <img className="h-16 w-20" src="/logo.png" alt="" />
-          <Link href="/">UniLink</Link>
+        <div className="relative h-16 flex items-end text-gray-600 font-semibold text-3xl font-sans">
+          <img
+            className="h-16 w-20 fixed left-20 top-5 rotate-12"
+            src="/logo.png"
+            alt=""
+          />
+          <Link className="ml-1" href="/">
+            UniLink
+          </Link>
         </div>
         <div className="flex gap-3 items-center">
           <button
