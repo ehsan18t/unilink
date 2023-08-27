@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
-import { Footer, Navbar } from '@/components/common'
+import { Footer } from '@/components/common'
+import ReadyNavBar from '@/components/common/nav/ReadyNavBar'
 import RequireNoAuth from '@/components/utils/RequireNoAuth'
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <RequireNoAuth>
-      <Navbar />
+      <ReadyNavBar />
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 my-8">
         {children}
       </div>

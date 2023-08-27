@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
 import Link from 'next/link'
-import Logo from '@/public/logo.png'
+import { RiMenu4Fill } from 'react-icons/ri'
 
 const Navbar = ({ children }: any) => {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
@@ -50,7 +50,7 @@ const Navbar = ({ children }: any) => {
                 className="w-10 h-10 rounded-full cursor-pointer"
               />
             ) : (
-              <HiMenu className="w-10 h-10" />
+              <RiMenu4Fill className="w-10 h-10" />
             )}
           </button>
         </div>
