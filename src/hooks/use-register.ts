@@ -12,12 +12,13 @@ export default function useRegister() {
 		last_name: '',
 		username: '',
 		university: '',
+		department: '',
 		email: '',
 		password: '',
 		re_password: '',
 	});
 
-	const { first_name, last_name, username, university, email, password, re_password } = formData;
+	const { first_name, last_name, username, university, department, email, password, re_password } = formData;
 
 	const onChange = (event: any) => {
 		const { name, value } = event.target;
@@ -28,7 +29,7 @@ export default function useRegister() {
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		register({ first_name, last_name, username, university, email, password, re_password })
+		register({ first_name, last_name, username, university, department, email, password, re_password })
 			.unwrap()
 			.then(() => {
 				toast.success('Please check email to verify account');
@@ -44,6 +45,7 @@ export default function useRegister() {
 		last_name,
 		username,
 		university,
+		department,
 		email,
 		password,
 		re_password,

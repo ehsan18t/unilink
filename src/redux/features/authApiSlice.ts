@@ -22,13 +22,14 @@ const authApiSlice = apiSlice.injectEndpoints({
 				last_name,
 				username,
 				university,
+				department,
 				email,
 				password,
 				re_password,
 			}) => ({
 				url: '/users/',
 				method: 'POST',
-				body: { first_name, last_name, username, university, email, password, re_password },
+				body: { first_name, last_name, username, university, department, email, password, re_password },
 			}),
 		}),
 		verify: builder.mutation({

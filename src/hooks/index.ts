@@ -7,3 +7,4 @@ export { default as useMutation } from './use-mutation';
 export { default as useSharedModal } from './use-shared-modal';
 export { default as useSharedList } from './use-shared-list';
 export { default as useFormSubmit } from './use-form-submit';
+export { default as useFetchDepartmentByUniversity } from './useFetchDepartmentByUniversity';

@@ -18,6 +18,9 @@ const departmentApiSlice = apiSlice.injectEndpoints({
 		retrieveDepartment: builder.query<Department[], void>({
 			query: () => '/department/list/',
 		}),
+		retrieveDepartmentByUniversity: builder.query<Department[], number>({
+			query: (university_id) => `/department/get/?university_id=${university_id}/`,
+		}),
 		registerDepartment: builder.mutation<Department, { name: string; code: string }>({
 		  query: ({ name, code }) => returnObject('create', { name, code }),
 		  // Explicitly return response in transformResponse
@@ -34,6 +37,7 @@ const departmentApiSlice = apiSlice.injectEndpoints({
 export const {
 	useRetrievePublicDepartmentQuery,
 	useRetrieveDepartmentQuery,
+	useRetrieveDepartmentByUniversityQuery,
 	useRegisterDepartmentMutation,
 	useDeleteDepartmentMutation,
 } = departmentApiSlice;
