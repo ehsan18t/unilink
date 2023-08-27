@@ -110,6 +110,8 @@ const ForumList = () => {
                   if (res?.data?.id) {
                     updateModalState(false)
                     updateFormData(initialFormData)
+                    // refresh
+                    window.location.reload()
                   }
                 }}
                 className="mt-5"
