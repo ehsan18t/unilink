@@ -29,8 +29,6 @@ const CommentList = ({ post_id }: any) => {
     return <div>Loading...</div>
   }
 
-  console.log(list)
-
   if (isError) {
     return <div>Error</div>
   }
