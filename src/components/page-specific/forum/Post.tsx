@@ -49,7 +49,7 @@ const Post = ({ post, className, bigTitle }: Props) => {
       className={cn(
         `${
           bigTitle ? '' : 'h-64'
-        } w-full flex flex-col gap-3 bg-gray-100 shadow-md rounded-2xl p-4 px-5`,
+        } w-full flex flex-col gap-3 shadow border-[1px] rounded-2xl p-4 px-5`,
         className,
       )}
     >
