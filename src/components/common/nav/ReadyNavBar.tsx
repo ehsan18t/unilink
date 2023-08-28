@@ -56,12 +56,17 @@ const ReadyNavBar = () => {
           />
           <NavItem
             to="/l/admin/university/course"
-            name="Course Management"
+            name="Manage Course"
             icon={RiAdminLine}
           />
           <NavItem
             to="/l/admin/university/department"
-            name="Dept. Management"
+            name="Manage Department"
+            icon={RiAdminLine}
+          />
+          <NavItem
+            to="/l/admin/university/faculty"
+            name="Manage Faculty"
             icon={RiAdminLine}
           />
         </>
