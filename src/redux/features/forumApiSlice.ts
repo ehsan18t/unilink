@@ -36,6 +36,10 @@ const forumApiSlice = apiSlice.injectEndpoints({
 		  query: ({ title, description,category_id }) => returnObject('create', { title, description, category_id }),
 		  transformResponse: (response: any) => response,
 		}),
+		registerPost: builder.mutation<Comment, { forum_id: number, title:string, content: string}>({
+		  query: ({ forum_id, title, content }) => returnObject('create-post', { forum_id, title, content }),
+		  transformResponse: (response: any) => response,
+		}),
 		registerPostComment: builder.mutation<Comment, { post_id: number, content: string}>({
 		  query: ({ post_id, content }) => returnObject('create-post-comment', { post_id, content }),
 		  transformResponse: (response: any) => response,
@@ -57,6 +61,7 @@ export const {
 	useRetrievePostByIdQuery,
 	useRetrievePostCommentsQuery,
 	useRegisterForumMutation,
+	useRegisterPostMutation,
 	useRegisterPostCommentMutation,
 	useDeleteForumMutation,
 } = forumApiSlice;
