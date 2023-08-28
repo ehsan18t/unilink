@@ -11,6 +11,15 @@ import { UserType } from '@/enums'
 import { FiUser } from 'react-icons/fi'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 
+const userTypes = {
+  1: 'Site Admin',
+  2: 'University Admin',
+  3: 'Moderator',
+  4: 'Faculty',
+  5: 'Representatives',
+  6: 'Student',
+}
+
 const ReadyNavBar = () => {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery()
 
@@ -27,6 +36,15 @@ const ReadyNavBar = () => {
   }
   return (
     <Navbar>
+      {user && isAuthenticated && (
+        <div className="pb-6 pl-3">
+          <h1 className="text-lg">
+            {user?.first_name + ' ' + user?.last_name}
+          </h1>
+          <h2 className="text-sm">{user?.email}</h2>
+          <h2 className="text-xs">{userTypes[user.user_type]}</h2>
+        </div>
+      )}
       <NavItem to="/" name="Home" icon={AiOutlineHome} />
       {isAuthenticated && user?.user_type == UserType.SITE_ADMIN && (
         <>
