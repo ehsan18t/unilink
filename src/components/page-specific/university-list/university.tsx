@@ -8,6 +8,7 @@ import {
   useUnbanMutation,
 } from '@/redux/features/universityApiSlice'
 import { useMutation } from '@/hooks'
+import Button from '@/components/common/Button'
 
 interface Props {
   university: University
@@ -97,20 +98,31 @@ const UniversityView = ({ university }: Props) => {
           <p>{university?.admin?.id}</p>
         </div>
         <div className="action">
-          <button
-            className="btn-blue"
-            onClick={(event) => handleToggleStatus(event, 'approve')}
-            disabled={isApproveLoading}
+          <Button
+            color="green"
+            onClick={(event) => {
+              event.preventDefault()
+              window.open(university.doc_url, '_blank')
+            }}
           >
-            {isApproved ? 'Disapprove' : 'Approve'}
-          </button>
-          <button
-            className="btn-red"
-            onClick={(event) => handleToggleStatus(event, 'ban')}
-            disabled={isBanLoading}
-          >
-            {isBan ? 'Unban' : 'Ban'}
-          </button>
+            Download Verification Documents
+          </Button>
+          <div className="space-x-2">
+            <button
+              className="btn-blue"
+              onClick={(event) => handleToggleStatus(event, 'approve')}
+              disabled={isApproveLoading}
+            >
+              {isApproved ? 'Disapprove' : 'Approve'}
+            </button>
+            <button
+              className="btn-red"
+              onClick={(event) => handleToggleStatus(event, 'ban')}
+              disabled={isBanLoading}
+            >
+              {isBan ? 'Unban' : 'Ban'}
+            </button>
+          </div>
         </div>
       </div>
     </li>
