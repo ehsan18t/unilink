@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 async function performRegistration(registerFunction: any, data: any) {
     try {
         const response = await registerFunction(data);
-        if (response?.data?.id || response?.status == 200) {
+        if (response?.data?.id || response?.status == 200 || response?.data?.status == 'success') {
             
         // show info toast for 2 sec
         toast.info('Processing...', { autoClose: 2000 });

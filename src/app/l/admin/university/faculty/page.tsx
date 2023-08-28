@@ -90,7 +90,7 @@ const FacultyList = () => {
           <Button
             onClick={async (e: any) => {
               const res = await onSubmit(e)
-              if (res?.data?.id) {
+              if (res?.data?.status === 'success') {
                 updateModalState(false)
                 updateFormData(initialFormData)
               }
