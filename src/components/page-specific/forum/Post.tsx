@@ -5,9 +5,13 @@ import { ForumPost, User, Forum } from '@/types'
 import React from 'react'
 import { BiCommentDetail, BiUpvote } from 'react-icons/bi'
 import { useRetrieveUserByIdQuery } from '@/redux/features/authApiSlice'
-import { useRetrieveForumQuery } from '@/redux/features/forumApiSlice'
+import {
+  useRetrieveForumQuery,
+  useRegisterToggleVoteMutation,
+} from '@/redux/features/forumApiSlice'
 import cn from 'classnames'
 import Link from 'next/link'
+import { useMutation } from '@/hooks'
 
 interface Props {
   post: ForumPost
@@ -19,6 +23,15 @@ const Post = ({ post, className, bigTitle }: Props) => {
   const host = process.env.NEXT_PUBLIC_HOST
   const [user, setUser] = useState<User>()
   const [forum, setForum] = useState<Forum>()
+  const [voteCount, setVoteCount] = useState<number>(
+    post.upvote_count ? post.upvote_count : 0,
+  )
+
+  const { toggleOnAction } = useMutation(
+    useRegisterToggleVoteMutation,
+    { post_id: post.id },
+    'toggle',
+  )
 
   const {
     data: fetchedUser,
@@ -43,6 +56,22 @@ const Post = ({ post, className, bigTitle }: Props) => {
   if (isLoading && isForumLoading) return <div>Loading...</div>
 
   if (isError && isForumError) return <div>Something went wrong...</div>
+
+  const handleToggle = async () => {
+    try {
+      const response = await toggleOnAction()
+
+      if (response.data?.type === 'unvote') {
+        setVoteCount(voteCount - 1)
+        console.log('success')
+      } else {
+        setVoteCount(voteCount + 1)
+        console.log('success')
+      }
+    } catch (error) {
+      console.error('Error toggle voting:', error)
+    }
+  }
 
   return (
     <div
@@ -92,7 +121,11 @@ const Post = ({ post, className, bigTitle }: Props) => {
         {/* <!-- Footer Section (comment, upvote count) --> */}
         <div className="flex justify-between text-gray-500">
           <div className="flex gap-1 justify-center items-center">
-            <BiUpvote /> {post.upvote_count}
+            <BiUpvote
+              className="cursor-pointer hover:bg-slate-300 rounded-full p-1 h-6 w-6"
+              onClick={handleToggle}
+            />{' '}
+            {voteCount}
           </div>
           <div className="flex gap-1 justify-center items-center">
             <BiCommentDetail /> {post.comment_count}
