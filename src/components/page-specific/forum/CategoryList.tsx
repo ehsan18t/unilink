@@ -1,7 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { ForumCategory } from '@/types'
 import {
   useRetrieveForumCategoryQuery,
   useRegisterCategoryMutation,
@@ -10,14 +8,12 @@ import Link from 'next/link'
 import Modal from '@/components/common/AnotherAnotherModal'
 import Input from '@/components/forms/Input'
 import Button from '@/components/common/Button'
-import cn from 'classnames'
 import { UserType } from '@/enums'
 import { useFormSubmit, useSharedModal } from '@/hooks'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice'
 
 const CategoryList = () => {
   const { data: list, isLoading, isError } = useRetrieveForumCategoryQuery()
-  const { data: categoryList } = useRetrieveForumCategoryQuery()
   const [register] = useRegisterCategoryMutation()
   const { data: user } = useRetrieveUserQuery()
   const { updateModalState } = useSharedModal()
