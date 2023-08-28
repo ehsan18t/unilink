@@ -48,6 +48,10 @@ const forumApiSlice = apiSlice.injectEndpoints({
 		  query: ({ post_id, content }) => returnObject('create-post-comment', { post_id, content }),
 		  transformResponse: (response: any) => response,
 		}),
+		registerToggleVote: builder.mutation<Comment, { post_id: number}>({
+		  query: ({ post_id }) => returnObject('toggle-post-vote', { post_id }),
+		  transformResponse: (response: any) => response,
+		}),
 		deleteForum: builder.mutation({
 			query: ({ forum_id }) => (
 				returnObject('delete', { forum_id })
@@ -68,5 +72,6 @@ export const {
 	useRegisterCategoryMutation,
 	useRegisterPostMutation,
 	useRegisterPostCommentMutation,
+	useRegisterToggleVoteMutation,
 	useDeleteForumMutation,
 } = forumApiSlice;
