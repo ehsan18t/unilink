@@ -2,12 +2,18 @@
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { useRetrieveForumPostQuery } from '@/redux/features/forumApiSlice'
+import {
+  useRetrieveForumPostQuery,
+  useRegisterPostMutation,
+} from '@/redux/features/forumApiSlice'
 import ForumList from '@/components/page-specific/forum/ForumList'
 import Post from '@/components/page-specific/forum/Post'
 import CategoryList from '@/components/page-specific/forum/CategoryList'
 import Button from '@/components/common/Button'
 import { ForumPost } from '@/types'
+import Modal from '@/components/common/AnotherModal'
+import Input from '@/components/forms/Input'
+import { useSharedModal, useFormSubmit } from '@/hooks'
 
 const ForumView = () => {
   const params = useParams()
@@ -18,6 +24,18 @@ const ForumView = () => {
     isLoading,
     isError,
   } = useRetrieveForumPostQuery(Number(forum_id))
+  const [register] = useRegisterPostMutation()
+
+  const initialFormData = {
+    forum_id: forum_id,
+    title: '',
+    content: '',
+  }
+
+  const { formData, onChange, onSubmit, updateFormData } = useFormSubmit(
+    register,
+    initialFormData,
+  )
 
   const [postList, setPostList] = useState<any>([])
 
@@ -56,7 +74,51 @@ const ForumView = () => {
               className="border border-gray-300 rounded-md p-2 w-full"
             />
           </div>
-          <Button> Create Post </Button>
+          {/* FORUM POST CREATE MODAL START */}
+          <Modal
+            modalKey="modal2"
+            sizeClass="w-1/4"
+            buttonClass="m-5"
+            text="Create Post"
+            title="Create Post"
+          >
+            <Input
+              key="title"
+              labelId="title"
+              type="text"
+              onChange={onChange}
+              value={formData.title}
+              required={true}
+              className="mb-5 w-full"
+            >
+              Post Title
+            </Input>
+            <textarea
+              name="content"
+              id="content"
+              placeholder="Write your post here..."
+              value={formData.content}
+              onChange={onChange}
+              rows={10}
+              className="border w-full border-gray-300 p-2 rounded-2xl"
+            ></textarea>
+            <div className="flex flex-col items-center">
+              <Button
+                onClick={async (e: any) => {
+                  const res = await onSubmit(e)
+                  if (res?.data?.id) {
+                    updateFormData(initialFormData)
+                    // refresh
+                    window.location.reload()
+                  }
+                }}
+                className="mt-5"
+              >
+                Create Post
+              </Button>
+            </div>
+          </Modal>
+          {/* FORUM POST CREATE MODAL END */}
         </div>
 
         <div className="h-full flex flex-col gap-5 overflow-y-scroll scrollbar-hide">
