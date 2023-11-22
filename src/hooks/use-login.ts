@@ -32,8 +32,8 @@ export default function useLogin() {
         // toast.success('Logged in')
         redirect('/l/dashboard')
       })
-      .catch(() => {
-        // toast.error('Failed to log in')
+      .catch((e) => {
+        if (e.message !== 'NEXT_REDIRECT') toast.error('Failed to log in')
       })
   }
 
