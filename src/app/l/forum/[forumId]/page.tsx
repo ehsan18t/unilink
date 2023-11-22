@@ -126,6 +126,11 @@ const ForumView = () => {
           {postList?.map((post: ForumPost) => (
             <Post key={post.id} post={post} />
           ))}
+          {postList.length === 0 && (
+            <p className="h-1/2 flex justify-center items-center text-gray-500">
+              No Post Found
+            </p>
+          )}
           {/* <!-- Post Messages Here --> */}
         </div>
       </div>
