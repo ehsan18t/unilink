@@ -29,11 +29,11 @@ export default function useLogin() {
       .unwrap()
       .then(() => {
         dispatch(setAuth())
-        toast.success('Logged in')
+        // toast.success('Logged in')
         redirect('/l/dashboard')
       })
       .catch(() => {
-        toast.error('Failed to log in')
+        // toast.error('Failed to log in')
       })
   }
 
