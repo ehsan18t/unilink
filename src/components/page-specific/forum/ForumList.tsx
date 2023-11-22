@@ -126,7 +126,7 @@ const ForumList = () => {
         {list?.map((forum) => (
           <Link
             key={forum.id}
-            href={`forum/${forum.id}`}
+            href={`/l/forum/${forum.id}`}
             className="no-underline flex flex-col items-start space-x-2 p-2 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
           >
             <div className="text-lg text-gray-700 p-1">{forum.title}</div>
