@@ -11,7 +11,7 @@ import { UserType } from '@/enums'
 import { FiUser } from 'react-icons/fi'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 
-const userTypes = {
+const userTypes: any = {
   0: 'Site Admin',
   1: 'University Admin',
   2: 'Moderator',
