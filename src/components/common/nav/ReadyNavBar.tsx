@@ -12,12 +12,12 @@ import { FiUser } from 'react-icons/fi'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 
 const userTypes = {
-  1: 'Site Admin',
-  2: 'University Admin',
-  3: 'Moderator',
-  4: 'Faculty',
-  5: 'Representatives',
-  6: 'Student',
+  0: 'Site Admin',
+  1: 'University Admin',
+  2: 'Moderator',
+  3: 'Faculty',
+  4: 'Representatives',
+  5: 'Student',
 }
 
 const ReadyNavBar = () => {
